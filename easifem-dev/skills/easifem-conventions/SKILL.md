@@ -158,7 +158,8 @@ older `AGENTS.md` says to ask before every build, the rule above
   overloads — never type-suffixed).
 - `IMPLICIT NONE` everywhere; modules `PRIVATE` by default with explicit
   `PUBLIC`; type components and bindings `PRIVATE` unless public API.
-- Every `USE` has `ONLY`, **one imported item per line**.
+- Every `USE` has `ONLY`, **one imported item per line**; `USE` lines
+  sorted alphabetically by module name.
 - Kinds from `GlobalData`: `REAL(DFP)`, `INTEGER(I4B)`, `LOGICAL(LGT)`.
 - Every dummy argument has `INTENT` and a `!!` comment; each binding has
   a one-line `!!` comment.
