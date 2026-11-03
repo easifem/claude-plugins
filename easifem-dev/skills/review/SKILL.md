@@ -43,7 +43,7 @@ not edit, build or run anything.**
    path for tests over 100 lines). For changed methods, check the docs
    were updated in the same change ("Keeping docs in sync").
 6. **Tests.** Each new or changed public routine has a
-   `<Name>_test_<N>.F90`; kind-overloaded tests use only DFP/I4B.
+   `<MethodName>_test_<N>.F90`; kind-overloaded tests use only DFP/I4B.
 7. **Change size.** Classify as **major** (interface change, new field,
    new method) or **minor**, and state the required build steps
    (major in base → install base, then `easifem dev classes`).

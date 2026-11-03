@@ -21,7 +21,7 @@ Load `easifem-conventions` and follow
    `src/modules/...` and read its implementation in `src/submodules/...`
    so the Description and Formula describe what the code actually does.
 2. **Find the example.** Look in `src/modules/<Module>/examples/` for a
-   matching `<Name>_test_<N>.F90`.
+   matching `<MethodName>_test_<N>.F90`.
    - If one exists, use its program (without its `!> author:` docblock)
      as the `Examples` program. If it is longer than 100 lines, write a
      short dummy example plus a `! Full example: <path>` line instead.

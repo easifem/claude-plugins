@@ -22,7 +22,7 @@ Load `easifem-conventions`. Work on exactly one bug at a time.
    recommendation (mention performance or API impact). "Docs only" is a
    valid option. **Wait for the user's choice.**
 3. **Failing test first** (unless "docs only"): add or update a
-   regression test `<Name>_test_<N>.F90` that fails with the current
+   regression test `<MethodName>_test_<N>.F90` that fails with the current
    code. If existing tests all pass, say so and write one that exposes
    the bug. Run it (install needs approval) or ask the user to run it,
    and confirm it fails.

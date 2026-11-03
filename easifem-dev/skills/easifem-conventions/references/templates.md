@@ -252,7 +252,7 @@ Debug rules (classes):
 
 ## Test / example program
 
-File: `src/modules/<Module>/examples/<Name>_test_<N>.F90`. Pick the next
+File: `src/modules/<Module>/examples/<MethodName>_test_<N>.F90`. Pick the next
 unused `<N>`. No GPL header. Group checks in `BLOCK ... END BLOCK`, each
 preceded by a short comment saying what it tests. A complete real example
 is in `test-example.md`.

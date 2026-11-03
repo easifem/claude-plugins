@@ -3,7 +3,7 @@ name: write-test
 description: >
   This skill should be used when the user runs "/write-test" or asks to
   "write a test for a method", "add an example program", "test this
-  routine", or "create a Name_test_N.F90 file" in an EASIFEM library (base,
+  routine", or "create a MethodName_test_N.F90 file" in an EASIFEM library (base,
   classes, elasticity, seepage, diffusion).
 ---
 
@@ -21,7 +21,7 @@ Load `easifem-conventions` and use the test template in
    List the behaviours to check: normal cases, edge cases (empty, zero,
    negative, boundary sizes), and mathematical identities that give exact
    expected values.
-2. **Pick the file.** `src/modules/<Module>/examples/<Name>_test_<N>.F90`
+2. **Pick the file.** `src/modules/<Module>/examples/<MethodName>_test_<N>.F90`
    with the next unused `<N>`. Read one existing test there to match
    style.
 3. **Write the program.**
