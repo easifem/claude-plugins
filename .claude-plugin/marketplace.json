@@ -1,0 +1,18 @@
+{
+  "name": "easifem",
+  "owner": {
+    "name": "Vikas Sharma, Ph. D.",
+    "email": "vickysharma0812@gmail.com"
+  },
+  "metadata": {
+    "description": "Claude plugins for developing the EASIFEM finite element libraries."
+  },
+  "plugins": [
+    {
+      "name": "easifem-dev",
+      "source": "./easifem-dev",
+      "description": "Conventions, scaffolding, docs, tests, bug-fixing, refactoring and review for EASIFEM base, classes and kernels.",
+      "version": "0.4.0"
+    }
+  ]
+}

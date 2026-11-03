@@ -1,0 +1,57 @@
+# easifem-dev
+
+Claude plugin for developing and refactoring the EASIFEM Fortran finite
+element libraries: easifemBase (base), easifemClasses (classes) and the
+independent kernels elasticity, seepage and diffusion.
+
+Author: Vikas Sharma, Ph. D. — https://www.easifem.com — License: GPL-3.0
+
+## Components
+
+| Component | Type | What it does |
+|---|---|---|
+| `easifem-conventions` | Skill (automatic) | Working style, branch/approval rules, build commands, major/minor rules, code style, naming, HDF5 layout, linting. References: naming, running examples (`runner.toml`), templates and debug rules, a complete test example, FORD docblocks (incl. keeping docs in sync and `formal` doc generation). |
+| `/new-method` | Skill | Scaffolds interface + docblock, submodule `MODULE PROCEDURE`, test and `runner.toml`. |
+| `/write-docblock` | Skill | FORD docblock whose `Examples` program comes from the matching test. |
+| `/write-test` | Skill | `<Name>_test_<N>.F90` with `CALL OK` checks; runs it. |
+| `/review` | Skill | Read-only review of changes against the conventions, with a major/minor verdict. |
+| `/refactor` | Skill | Inventory → mapping table → approval → mechanical rename/restructure → verify. |
+| `/bug-report` | Skill | Writes `bug-reports/<Module>_bug_report.md` with H/M/L entries. |
+| `/fix-bug` | Skill | One bug at a time: explain with options → failing test → fix → docs → report update. |
+| Branch guard | Hook | Denies file edits in an EASIFEM git repository unless the branch ends in `-claude`. |
+| Command guard | Hook | Denies `easifem install` without `--no-download`. Asks before `easifem install`, `easifem clean`, deleting files, commit, push, merge, rebase, hard reset, branch deletion, global git config, and `fortitude check` without `--no-fix`. |
+
+## Working rules built in
+
+- One task at a time; explain options and let the user choose.
+- All edits and builds on a `<branch>-claude` branch, per repository.
+- Allowed without asking on that branch: edits, `easifem dev <lib>`,
+  `easifem run <File>.F90`.
+- Asks first: `easifem install` (writes the shared install), more than 10
+  files in one task, clean, deletes, commits (unless asked), push, merge.
+- Major change = changed method interface, new field, or new method.
+  Major in base → install base, then `easifem dev classes`. Kernels are
+  compiled only when being worked on.
+- Overloads are numbered (`obj_Initiate1`, `obj_Get_1`), never named by
+  type.
+- `fortitude check --no-fix` only; never commit `examples/CMakeLists.txt`.
+- `easifem run` and `easifem dev` can report success on failure; Claude
+  reads the output instead of trusting the exit status.
+- `easifem clean` deletes the install too, not just the build.
+
+## Setup
+
+- Requires the `easifem` CLI on PATH, plus `python3` and `git` for hooks.
+- Each repository's own `AGENTS.md` still applies.
+- The hooks see Claude's own file and shell tools. Edits made through
+  other routes (e.g. `sed -i` inside a shell command) rely on the skill
+  instructions rather than the branch hook.
+
+## Usage
+
+- `/new-method AbstractMesh_ GetBoundingBox GetMethods`
+- `/write-docblock obj_GetRank`
+- `/write-test ARTH`
+- `/review`
+- `/refactor HDF5File_Class: numbered overload names`
+- `/bug-report SortUtility` then `/fix-bug H-01`

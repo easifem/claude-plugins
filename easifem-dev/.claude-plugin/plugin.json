@@ -1,0 +1,12 @@
+{
+  "name": "easifem-dev",
+  "version": "0.4.0",
+  "description": "Conventions, scaffolding, documentation, testing, bug-fixing, refactoring and review workflows for developing the EASIFEM Fortran finite element libraries (base, classes and the elasticity, seepage and diffusion kernels).",
+  "author": {
+    "name": "Vikas Sharma, Ph. D."
+  },
+  "homepage": "https://www.easifem.com",
+  "repository": "https://github.com/easifem",
+  "license": "GPL-3.0",
+  "keywords": ["fortran", "finite-element", "easifem", "ford"]
+}

@@ -1,0 +1,68 @@
+---
+name: refactor
+description: >
+  This skill should be used when the user runs "/refactor" or asks to
+  "rename methods", "rename routines to the new convention", "change
+  hdf5_ to obj_", "make method names uppercase", "renumber overloads",
+  "move methods to another submodule", "split this submodule", "remove
+  unused code", or otherwise restructure existing code in an EASIFEM
+  library (base, classes, elasticity, seepage, diffusion) without
+  changing behaviour.
+metadata:
+  version: "0.4.0"
+---
+
+# /refactor
+
+Arguments: what to refactor and where (e.g. "HDF5File_Class: type-suffixed
+overloads to numbered names"). Ask if the scope is unclear.
+
+Load `easifem-conventions` with `references/naming.md`.
+
+A refactor changes structure or names, never behaviour. Keep behaviour
+changes (bug fixes, new features) out of it; note them for later.
+
+## Phase 1: Inventory (read-only)
+
+1. Find every occurrence with `grep -rn` across **all** EASIFEM
+   repositories available (base, classes, kernels): definitions,
+   bindings, `GENERIC` lists, `MODULE PROCEDURE` lines, `END` lines,
+   calls, docblocks, `See also: [[...]]`, tests, kernel examples, and
+   `CMakeLists.txt` entries.
+2. Classify callers: through the public generic (unaffected by renaming
+   specifics) vs. direct references (must change).
+
+## Phase 2: Plan and approval
+
+Present to the user:
+
+- a **mapping table** old → new for every name (for overload renumbering,
+  keep the existing order of the generic list unless told otherwise),
+- the list of files to change, grouped by repository, with the count,
+- open questions (helpers inside generics, order, docs wording),
+- major/minor classification and the build steps afterwards.
+
+If more than 10 files are involved (usual for refactors), wait for explicit
+approval. Even when fewer, wait if any naming choice is ambiguous.
+
+## Phase 3: Apply
+
+1. Ensure each touched repository is on a `-claude` branch.
+2. Apply mechanically from the approved mapping. Prefer a small script
+   (word-boundary regex, applied to the listed files only) over many manual
+   edits; show the script before running it if it touches many files.
+   Rename longer names first so prefixes don't collide
+   (`obj_Read__d1` before `obj_Read_d1`).
+3. Update docblocks, `!!` comments, `See also:` links and banners.
+4. Keep line length ≤ 78 after renaming; rewrap continuation lines.
+5. Do not change logic, argument lists or formatting elsewhere.
+
+## Phase 4: Verify
+
+1. `grep` again: no old names left (report any intentional leftovers).
+2. `fortitude check --no-fix` on changed files.
+3. `easifem dev <lib>`. Renaming specific procedures is a major change:
+   if it is base, ask to install base and then run `easifem dev classes`.
+4. Tests: `touch` affected tests, ask to install, run them, report.
+5. Report: mapping applied, files changed, build/test results.
+   Commit only when the user asks (one commit per module).
