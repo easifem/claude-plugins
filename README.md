@@ -1,4 +1,4 @@
-# easifem-claude-plugins
+# claude-plugins
 
 Claude plugin marketplace for EASIFEM development.
 
