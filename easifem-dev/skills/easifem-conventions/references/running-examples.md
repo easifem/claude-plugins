@@ -41,9 +41,7 @@ format (it counts as a file change), copying the closest existing
 ```bash
 cd src/modules/<Module>/examples
 easifem run <Name>_test_<N>.F90
-# several:
-for f in <Name>_test_*.F90; do easifem run "$f"; done
-# testing framework for all tests in examples:
+# run batch test:
 easifem test <Examples directory path>
 ```
 
