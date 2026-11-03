@@ -5,8 +5,6 @@ description: >
   "document this routine", "write the FORD docblock", "add documentation to
   a method", "fix the docblock", or "add an Examples section" for code in
   an EASIFEM library (base, classes, elasticity, seepage, diffusion).
-metadata:
-  version: "0.4.0"
 ---
 
 # /write-docblock

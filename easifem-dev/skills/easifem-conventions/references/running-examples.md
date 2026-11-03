@@ -43,6 +43,8 @@ cd src/modules/<Module>/examples
 easifem run <Name>_test_<N>.F90
 # several:
 for f in <Name>_test_*.F90; do easifem run "$f"; done
+# testing framework for all tests in examples:
+easifem test <Examples directory path>
 ```
 
 - The installed library is what gets linked: after library changes, ask
@@ -59,9 +61,3 @@ for f in <Name>_test_*.F90; do easifem run "$f"; done
   backtraces.
 - `easifem run` regenerates `examples/CMakeLists.txt`; never commit it.
 - Report `ok` / `not ok` counts per file, and the failing labels.
-
-## Known false failures
-
-- `GetUnitNo_test_1` (base): the installed library links gcc 15's
-  libgfortran while tests build with gcc 16 (two runtimes, separate unit
-  tables). Not a code bug.

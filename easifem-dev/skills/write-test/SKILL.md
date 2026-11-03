@@ -5,8 +5,6 @@ description: >
   "write a test for a method", "add an example program", "test this
   routine", or "create a Name_test_N.F90 file" in an EASIFEM library (base,
   classes, elasticity, seepage, diffusion).
-metadata:
-  version: "0.4.0"
 ---
 
 # /write-test

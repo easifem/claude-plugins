@@ -5,8 +5,6 @@ description: >
   "generate a bug report", "write up the bugs you found", "report unused
   code", "save the report in bugs-report", or "update the bug report" for
   an EASIFEM library (base, classes, elasticity, seepage, diffusion).
-metadata:
-  version: "0.4.0"
 ---
 
 # /bug-report
