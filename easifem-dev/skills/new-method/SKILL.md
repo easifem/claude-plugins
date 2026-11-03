@@ -6,8 +6,6 @@ description: >
   procedure", or "add a type-bound procedure to a class" in an EASIFEM
   library (base, classes, elasticity, seepage, diffusion). It scaffolds the
   interface, the submodule implementation and a test program.
-metadata:
-  version: "0.4.0"
 ---
 
 # /new-method

@@ -8,8 +8,6 @@ description: >
   unused code", or otherwise restructure existing code in an EASIFEM
   library (base, classes, elasticity, seepage, diffusion) without
   changing behaviour.
-metadata:
-  version: "0.4.0"
 ---
 
 # /refactor

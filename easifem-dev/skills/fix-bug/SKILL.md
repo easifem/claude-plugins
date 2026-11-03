@@ -4,15 +4,13 @@ description: >
   This skill should be used when the user runs "/fix-bug ID" or says
   "move to H-03", "let's start with M-01", "fix the next bug", "explain
   this bug", or "mark it fixed" while working through a bug report in
-  bug-reports/ of an EASIFEM library (base, classes, elasticity, seepage,
+  bugs-report/ of an EASIFEM library (base, classes, elasticity, seepage,
   diffusion).
-metadata:
-  version: "0.4.0"
 ---
 
 # /fix-bug
 
-Arguments: a bug ID from `bug-reports/<Module>_bug_report.md` (or "next").
+Arguments: a bug ID from `bugs-report/<Module>_bug_report.md` (or "next").
 
 Load `easifem-conventions`. Work on exactly one bug at a time.
 

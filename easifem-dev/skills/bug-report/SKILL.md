@@ -3,10 +3,8 @@ name: bug-report
 description: >
   This skill should be used when the user runs "/bug-report" or asks to
   "generate a bug report", "write up the bugs you found", "report unused
-  code", "save the report in bug-reports", or "update the bug report" for
+  code", "save the report in bugs-report", or "update the bug report" for
   an EASIFEM library (base, classes, elasticity, seepage, diffusion).
-metadata:
-  version: "0.4.0"
 ---
 
 # /bug-report
@@ -16,9 +14,9 @@ conversation, a code read, a review). Ask if unclear.
 
 ## Location and format
 
-- Directory: `bug-reports/` at the repository root (git-ignored; if the
+- Directory: `bugs-report/` at the repository root (git-ignored; if the
   directory or the ignore entry is missing, propose adding them).
-- File: `bug-reports/<Module>_bug_report.md` (or
+- File: `bugs-report/<Module>_bug_report.md` (or
   `<Module>-<topic>.md`, e.g. `UStfemLinearElasticity_Class-unused-code.md`).
 - Keep only open entries; resolved entries are removed when fixed.
 

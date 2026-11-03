@@ -57,7 +57,7 @@ After the GPL header of a library file (none in test programs):
 ! summary: Module description
 !
 ! Changes:
-!   - YYYY-MM-DD: Description of the change
+! - YYYY-MM-DD: Description of the change
 ```
 
 ## Examples section
@@ -68,7 +68,7 @@ After the GPL header of a library file (none in test programs):
   `USE ..., ONLY:` lines (one item per line), `IMPLICIT NONE`,
   declarations, calls, and `CALL OK(...)` checks from `Test_Method`.
 - Fenced with `` !```fortran `` and `` !``` `` on their own lines; every
-  line inside starts with `! ` (plain `!` + one space), never `!>`.
+  line inside starts with `!` (plain `!` + one space), never `!>`.
 - Normally identical to the matching test in
   `src/modules/<Module>/examples/`, minus its `!> author:` docblock (and
   minus any GPL header). Helpers go after `CONTAINS` inside the program.
@@ -163,7 +163,7 @@ END INTERFACE
 ## Generating the docs (classes)
 
 ```bash
-formal generate --project doc/formal.md --mirror-sources
+formal generate --project doc/formal.md
 ```
 
 - Needs no library build. Pages go to `docs/api/` (git-ignored).

@@ -6,8 +6,6 @@ description: >
   ready to commit", or "review a file" in an EASIFEM library (base,
   classes, elasticity, seepage, diffusion). It reports problems and never
   edits files.
-metadata:
-  version: "0.4.0"
 ---
 
 # /review
