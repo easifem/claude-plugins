@@ -2,7 +2,7 @@
 
 ## Where examples live
 
-- base, classes: `src/modules/<Module>/examples/<Name>_test_<N>.F90`.
+- base, classes: `src/modules/<Module>/examples/<MethodName>_test_<N>.F90`.
 - Kernels (elasticity, seepage, diffusion):
   `examples/<Kernel>/<example-N>/main.F90` with `config.toml`, a `mesh/`
   subdirectory (its own `runner.toml`), and other inputs. seepage also has
@@ -40,7 +40,7 @@ format (it counts as a file change), copying the closest existing
 
 ```bash
 cd src/modules/<Module>/examples
-easifem run <Name>_test_<N>.F90
+easifem run <MethodName>_test_<N>.F90
 # run batch test:
 easifem test <Examples directory path>
 ```

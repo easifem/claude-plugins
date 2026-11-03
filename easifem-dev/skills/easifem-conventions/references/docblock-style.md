@@ -76,7 +76,7 @@ After the GPL header of a library file (none in test programs):
   lines, write a short "dummy example" instead: the minimal code that
   shows the call, not meant to run by copy and paste. Below it, give the
   full test path:
-  `! Full example: src/modules/<Module>/examples/<Name>_test_<N>.F90`.
+  `! Full example: src/modules/<Module>/examples/<MethodName>_test_<N>.F90`.
 - Kind-overloaded routines: example uses `REAL(DFP)` / `INTEGER(I4B)` only.
 - Generic interfaces (`Initiate`, `Set`, `Insert`, ...): one example per
   distinct use case, not per specific procedure; thin wrappers point to
