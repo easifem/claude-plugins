@@ -39,10 +39,10 @@ only when `obj_` would clash (see `naming.md`).
 
 ```fortran
 MODULE TypeName_Method
+USE BaseType, ONLY: TypeName_
 USE GlobalData, ONLY: DFP
 USE GlobalData, ONLY: I4B
 USE GlobalData, ONLY: LGT
-USE BaseType, ONLY: TypeName_
 IMPLICIT NONE
 PRIVATE
 
@@ -64,6 +64,16 @@ END INTERFACE MethodName
 
 END MODULE TypeName_Method
 ```
+
+## base: new type
+
+1. Define the type in `src/modules/BaseType/src/BaseType.F90`.
+2. Create `src/modules/<TypeName>/` with `<TypeName>_Method.F90`
+   (interfaces) and its `CMakeLists.txt`.
+3. Create `src/submodules/<TypeName>/` with
+   `<TypeName>_Method@<Category>Methods.F90` files and `CMakeLists.txt`.
+4. Add both directories to the parent `CMakeLists.txt` the same way as
+   neighbouring modules.
 
 ## base: submodule
 
@@ -96,10 +106,10 @@ END SUBMODULE ConstructorMethods
 ! summary: Brief description
 
 MODULE ClassName_Class
+USE ExceptionHandler_Class, ONLY: e
 USE GlobalData, ONLY: DFP
 USE GlobalData, ONLY: I4B
 USE GlobalData, ONLY: LGT
-USE ExceptionHandler_Class, ONLY: e
 IMPLICIT NONE
 PRIVATE
 

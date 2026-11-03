@@ -16,7 +16,7 @@ Author: Vikas Sharma, Ph. D. — https://www.easifem.com — License: GPL-3.0
 | `/write-test` | Skill | `<Name>_test_<N>.F90` with `CALL OK` checks; runs it. |
 | `/review` | Skill | Read-only review of changes against the conventions, with a major/minor verdict. |
 | `/refactor` | Skill | Inventory → mapping table → approval → mechanical rename/restructure → verify. |
-| `/bug-report` | Skill | Writes `bug-reports/<Module>_bug_report.md` with H/M/L entries. |
+| `/bug-report` | Skill | Writes `bugs-report/<Module>_bug_report.md` with H/M/L entries. |
 | `/fix-bug` | Skill | One bug at a time: explain with options → failing test → fix → docs → report update. |
 | Branch guard | Hook | Denies file edits in an EASIFEM git repository unless the branch ends in `-claude`. |
 | Command guard | Hook | Denies `easifem install` without `--no-download`. Asks before `easifem install`, `easifem clean`, deleting files, commit, push, merge, rebase, hard reset, branch deletion, global git config, and `fortitude check` without `--no-fix`. |
