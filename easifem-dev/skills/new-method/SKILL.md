@@ -41,7 +41,7 @@ and `references/docblock-style.md` first.
    - for classes: the new binding line in `TYPE ... CONTAINS` and, if the
      method belongs to a generic, the generic binding change,
    - the `MODULE PROCEDURE` implementation,
-   - the test program `<Name>_test_<N>.F90` (next unused `<N>`), plus a
+   - the test program `<MethodName>_test_<N>.F90` (next unused `<N>`), plus a
      `runner.toml` if the examples directory has none
      (`references/running-examples.md`).
    If the work would touch more than 10 files, list them and wait for
