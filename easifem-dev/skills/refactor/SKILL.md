@@ -45,24 +45,23 @@ approval. Even when fewer, wait if any naming choice is ambiguous.
 
 ## Phase 3: Apply
 
-1. Ensure each touched repository is on a `-claude` branch.
-2. Apply mechanically from the approved mapping. Prefer a small script
+1. Apply mechanically from the approved mapping. Prefer a small script
    (word-boundary regex, applied to the listed files only) over many manual
    edits; show the script before running it if it touches many files.
    Rename longer names first so prefixes don't collide
    (`obj_Read__d1` before `obj_Read_d1`).
-3. Update docblocks, `!!` comments, `See also:` links and banners.
-4. Keep line length ≤ 78 after renaming; rewrap continuation lines.
-5. Do not change logic, argument lists or formatting elsewhere.
+2. Update docblocks, `!!` comments, `See also:` links and banners.
+3. Keep line length ≤ 78 after renaming; rewrap continuation lines.
+4. Do not change logic, argument lists or formatting elsewhere.
 
 ## Phase 4: Verify
 
 1. `grep` again: no old names left (report any intentional leftovers).
 2. `fortitude check --no-fix` on changed files.
 3. `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>`. Renaming specific procedures is a major
-   change: if it is base, ask to install base and then run
+   change: if it is base, install base and then run
    `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes`.
-4. Tests: ask to install, run the affected tests with
+4. Tests: install, run the affected tests with
    `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90 ...`, report.
 5. Report: mapping applied, files changed, build/test results.
    Commit only when the user asks (one commit per module).

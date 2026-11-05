@@ -41,13 +41,11 @@ Load `easifem-conventions` and use the test template in
    - Helpers after `CONTAINS`. Lines ≤ 78 characters.
    - Keep it suitable to paste into the routine's docblock `Examples`
      (over 100 lines → the docblock gets a dummy example instead).
-4. **Write.** Make sure the repository is on a `-claude` branch, then
-   create the file, plus a `runner.toml` if the directory has none (see
+4. **Write.** Create the file, plus a `runner.toml` if the directory has none (see
    `references/running-examples.md`). More than 10 files → list them and
    wait for approval.
-5. **Run.** If the library changed since the last install, ask to
-   `easifem install <lib> --no-download` (shared install) or ask the user
-   whether they already compiled it. Then run
+5. **Run.** If the library changed since the last install, run
+   `easifem install <lib> --no-download` (shared install). Then run
    `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90`.
 6. **Report** every `OK` result. For a failure, decide whether the test
    or the routine is wrong. Fix a clearly wrong test; if the routine looks
