@@ -26,7 +26,7 @@ Author: Vikas Sharma, Ph. D. — <https://www.easifem.com> — License: GPL-3.0
 - One task at a time; explain options and let the user choose.
 - All edits and builds on a `<branch>-claude` branch, per repository.
 - Allowed without asking on that branch: edits, `easifem dev <lib>`,
-  `easifem run <File>.F90`.
+  `easifem run <File>.F90 --rebuild --cache-clean`.
 - Asks first: `easifem install` (writes the shared install), more than 10
   files in one task, clean, deletes, commits (unless asked), push, merge.
 - Major change = changed method interface, new field, or new method.
