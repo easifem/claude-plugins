@@ -48,7 +48,7 @@ and `references/docblock-style.md` first.
    approval first.
 6. **Build and test.** Run `easifem dev <lib>` and fix compile errors.
    To run the test, ask to `easifem install <lib> --no-download` (shared
-   install), then from the examples directory `easifem run <test>.F90`.
+   install), then from the examples directory `easifem run <test>.F90 --rebuild --cache-clean`.
    A new method is a **major** change: if `<lib>` is base, also (after
    install) run `easifem dev classes` (classes on its own `-claude`
    branch).

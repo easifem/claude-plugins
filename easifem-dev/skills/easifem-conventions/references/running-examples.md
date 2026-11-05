@@ -40,7 +40,7 @@ format (it counts as a file change), copying the closest existing
 
 ```bash
 cd src/modules/<Module>/examples
-easifem run <MethodName>_test_<N>.F90
+easifem run <MethodName>_test_<N>.F90 --rebuild --cache-clean
 # run batch test:
 easifem test <Examples directory path>
 ```
