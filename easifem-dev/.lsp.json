@@ -1,0 +1,9 @@
+{
+  "zfls": {
+    "command": "zfls",
+    "extensionToLanguage": {
+      ".F90": "fortran",
+      ".f90": "fortran"
+    }
+  }
+}

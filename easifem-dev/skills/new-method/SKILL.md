@@ -46,12 +46,12 @@ and `references/docblock-style.md` first.
      (`references/running-examples.md`).
    If the work would touch more than 10 files, list them and wait for
    approval first.
-6. **Build and test.** Run `easifem dev <lib>` and fix compile errors.
-   To run the test, ask to `easifem install <lib> --no-download` (shared
-   install), then from the examples directory `easifem run <test>.F90 --rebuild --cache-clean`.
+6. **Build and test.** Run `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>` and fix compile
+   errors. To run the test, ask to `easifem install <lib> --no-download`
+   (shared install), then run `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <test>.F90`.
    A new method is a **major** change: if `<lib>` is base, also (after
-   install) run `easifem dev classes` (classes on its own `-claude`
-   branch).
+   install) run `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes` (classes on its own
+   `-claude` branch).
 7. **Report.** Branch used, files changed, build/test results, and any
    remaining downstream steps.
 

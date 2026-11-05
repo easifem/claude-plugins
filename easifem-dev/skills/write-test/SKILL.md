@@ -47,9 +47,8 @@ Load `easifem-conventions` and use the test template in
    wait for approval.
 5. **Run.** If the library changed since the last install, ask to
    `easifem install <lib> --no-download` (shared install) or ask the user
-   whether they already compiled it. `touch` the test after interface
-   changes. Then from the examples directory `easifem run <File>.F90 --rebuild --cache-clean`.
-   Ignore the known false failure listed in `running-examples.md`.
+   whether they already compiled it. Then run
+   `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90`.
 6. **Report** every `OK` result. For a failure, decide whether the test
    or the routine is wrong. Fix a clearly wrong test; if the routine looks
    wrong, explain the bug and ask before changing library code beyond

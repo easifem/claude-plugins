@@ -20,28 +20,33 @@ Author: Vikas Sharma, Ph. D. — <https://www.easifem.com> — License: GPL-3.0
 | `/fix-bug` | Skill | One bug at a time: explain with options → failing test → fix → docs → report update. |
 | Branch guard | Hook | Denies file edits in an EASIFEM git repository unless the branch ends in `-claude`. |
 | Command guard | Hook | Denies `easifem install` without `--no-download`. Asks before `easifem install`, `easifem clean`, deleting files, commit, push, merge, rebase, hard reset, branch deletion, global git config, and `fortitude check` without `--no-fix`. |
+| `scripts/build.sh` | Script | Wraps `easifem dev <lib>`. Prints only error lines and exits 1 on any compile or link failure. |
+| `scripts/run-test.sh` | Script | Wraps `easifem run` for one or more files, each from its own directory. Prints only error lines and `ok`/`not ok` counts per file, and exits 1 on any compile, link, crash or `not ok`, or if `runner.toml` is missing. |
+| `zfls` | LSP server | Fortran code intelligence for `.F90` and `.f90` files (`.lsp.json`). |
 
 ## Working rules built in
 
 - One task at a time; explain options and let the user choose.
 - All edits and builds on a `<branch>-claude` branch, per repository.
-- Allowed without asking on that branch: edits, `easifem dev <lib>`,
-  `easifem run <File>.F90 --rebuild --cache-clean`.
+- Allowed without asking on that branch: edits, `scripts/build.sh <lib>`,
+  `scripts/run-test.sh <File>.F90`.
 - Asks first: `easifem install` (writes the shared install), more than 10
   files in one task, clean, deletes, commits (unless asked), push, merge.
 - Major change = changed method interface, new field, or new method.
-  Major in base → install base, then `easifem dev classes`. Kernels are
+  Major in base → install base, then `scripts/build.sh classes`. Kernels are
   compiled only when being worked on.
 - Overloads are numbered (`obj_Initiate1`, `obj_Get_1`), never named by
   type.
 - `fortitude check --no-fix` only; never commit `examples/CMakeLists.txt`.
-- `easifem run` and `easifem dev` can report success on failure; Claude
-  reads the output instead of trusting the exit status.
+- `easifem run` and `easifem dev` can report success on failure, so the
+  scripts check the output as well as the exit status. On failure they
+  print the path of the full log.
 - `easifem clean` deletes the install too, not just the build.
 
 ## Setup
 
 - Requires the `easifem` CLI on PATH, plus `python3` and `git` for hooks.
+- Requires `zfls` on PATH for Fortran code intelligence.
 - Each repository's own `AGENTS.md` still applies.
 - The hooks see Claude's own file and shell tools. Edits made through
   other routes (e.g. `sed -i` inside a shell command) rely on the skill

@@ -46,7 +46,8 @@ not edit, build or run anything.**
    `<MethodName>_test_<N>.F90`; kind-overloaded tests use only DFP/I4B.
 7. **Change size.** Classify as **major** (interface change, new field,
    new method) or **minor**, and state the required build steps
-   (major in base → install base, then `easifem dev classes`).
+   (major in base → install base, then
+   `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes`).
 
 If `fortitude` is available, run `fortitude check --no-fix <files>` and
 include its findings. Never run it without `--no-fix` (the config has
