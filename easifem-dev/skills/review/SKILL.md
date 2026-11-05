@@ -56,6 +56,7 @@ include its findings. Never run it without `--no-fix` (the config has
 ## Output
 
 Group findings by severity: **Must fix**, **Should fix**, **Note**.
-For each: `file:line`, the problem, and the suggested fix (as text, not an
-edit). End with the major/minor verdict and build steps. If nothing is
+For each: the location as `File.F90:ProcedureName` (`File.F90:<line>` only
+for code outside any procedure), the problem, and the suggested fix (as
+text, not an edit). End with the major/minor verdict and build steps. If nothing is
 wrong, say so plainly. Offer to apply the fixes.

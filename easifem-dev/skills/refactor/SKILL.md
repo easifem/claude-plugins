@@ -63,5 +63,6 @@ approval. Even when fewer, wait if any naming choice is ambiguous.
    `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes`.
 4. Tests: install, run the affected tests with
    `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90 ...`, report.
-5. Report: mapping applied, files changed, build/test results.
+5. Report: mapping applied, changes as `File.F90:ProcedureName`,
+   build/test results.
    Commit only when the user asks (one commit per module).

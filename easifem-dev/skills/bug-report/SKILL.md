@@ -30,7 +30,9 @@ Each entry:
 ```markdown
 ### H-01 — <short title>
 
-- **Where:** `src/.../File.F90:<line>` (`ProcedureName`)
+- **Where:** `File.F90:ProcedureName` (`File.F90:<line>` only for code
+  outside any procedure; see "Reporting code locations" in
+  `easifem-conventions`)
 - **Problem:** what is wrong and when it happens.
 - **Evidence:** minimal input / failing test idea / reasoning.
 - **Suggested fix:** options (a), (b) … with a recommendation.
@@ -42,5 +44,6 @@ Each entry:
    not re-read the code.
 2. Write or update the report (new IDs continue after the highest
    existing one).
-3. Show a summary table (ID, title, location) to the user.
+3. Show a summary table (ID, title, location as `File.F90:ProcedureName`)
+   to the user.
 4. Do not fix anything here; fixing is `/fix-bug <ID>`.
