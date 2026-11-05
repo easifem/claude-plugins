@@ -39,8 +39,7 @@ Load `easifem-conventions` and follow
    example lines start with `! `; `USE` lines one item each; argument
    names match the interface exactly; no line in the Description starts
    with `word:`.
-5. **Apply.** Make sure the repository is on a `-claude` branch, then
-   write the docblock. If documenting many routines would touch more than
+5. **Apply.** Write the docblock. If documenting many routines would touch more than
    10 files, list them and wait for approval first.
 6. **Verify.** Docblock edits are minor changes; run
    `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>`

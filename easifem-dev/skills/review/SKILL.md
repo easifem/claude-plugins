@@ -58,5 +58,4 @@ include its findings. Never run it without `--no-fix` (the config has
 Group findings by severity: **Must fix**, **Should fix**, **Note**.
 For each: `file:line`, the problem, and the suggested fix (as text, not an
 edit). End with the major/minor verdict and build steps. If nothing is
-wrong, say so plainly. Also report the current branch and warn if it does
-not end in `-claude`. Offer to apply the fixes (on a `-claude` branch).
+wrong, say so plainly. Offer to apply the fixes.

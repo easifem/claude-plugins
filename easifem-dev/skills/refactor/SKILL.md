@@ -45,15 +45,14 @@ approval. Even when fewer, wait if any naming choice is ambiguous.
 
 ## Phase 3: Apply
 
-1. Ensure each touched repository is on a `-claude` branch.
-2. Apply mechanically from the approved mapping. Prefer a small script
+1. Apply mechanically from the approved mapping. Prefer a small script
    (word-boundary regex, applied to the listed files only) over many manual
    edits; show the script before running it if it touches many files.
    Rename longer names first so prefixes don't collide
    (`obj_Read__d1` before `obj_Read_d1`).
-3. Update docblocks, `!!` comments, `See also:` links and banners.
-4. Keep line length ≤ 78 after renaming; rewrap continuation lines.
-5. Do not change logic, argument lists or formatting elsewhere.
+2. Update docblocks, `!!` comments, `See also:` links and banners.
+3. Keep line length ≤ 78 after renaming; rewrap continuation lines.
+4. Do not change logic, argument lists or formatting elsewhere.
 
 ## Phase 4: Verify
 
