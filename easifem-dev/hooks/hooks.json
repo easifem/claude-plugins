@@ -1,5 +1,5 @@
 {
-  "description": "easifem-dev guards: edits only on -claude branches; ask before install, clean, deletes, risky git commands and fortitude without --no-fix.",
+  "description": "easifem-dev guards: ask before clean, deletes, risky git commands and fortitude without --no-fix.",
   "hooks": {
     "PreToolUse": [
       {
@@ -8,16 +8,6 @@
           {
             "type": "command",
             "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard_shell.py\"",
-            "timeout": 10
-          }
-        ]
-      },
-      {
-        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/guard_branch.py\"",
             "timeout": 10
           }
         ]

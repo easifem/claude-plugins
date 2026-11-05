@@ -33,9 +33,7 @@ and `references/docblock-style.md` first.
 3. **Design and confirm.** Show the proposed name, signature (arguments,
    kinds, intents, result) and algorithm in a few lines, and ask how the
    user wants it done before writing (one task at a time).
-4. **Branch.** Make sure the repository is on a `-claude` branch (see
-   the golden rules in `easifem-conventions`).
-5. **Write.** Create or update:
+4. **Write.** Create or update:
    - the interface (with full FORD docblock, Examples taken from the new
      test),
    - for classes: the new binding line in `TYPE ... CONTAINS` and, if the
@@ -46,13 +44,12 @@ and `references/docblock-style.md` first.
      (`references/running-examples.md`).
    If the work would touch more than 10 files, list them and wait for
    approval first.
-6. **Build and test.** Run `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>` and fix compile
-   errors. To run the test, ask to `easifem install <lib> --no-download`
+5. **Build and test.** Run `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>` and fix compile
+   errors. To run the test, run `easifem install <lib> --no-download`
    (shared install), then run `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <test>.F90`.
    A new method is a **major** change: if `<lib>` is base, also (after
-   install) run `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes` (classes on its own
-   `-claude` branch).
-7. **Report.** Branch used, files changed, build/test results, and any
+   install) run `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes`.
+6. **Report.** Files changed, build/test results, and any
    remaining downstream steps.
 
 ## Checks before proposing

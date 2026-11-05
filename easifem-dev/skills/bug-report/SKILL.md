@@ -41,6 +41,6 @@ Each entry:
 1. Collect findings. If the user said to use the conversation only, do
    not re-read the code.
 2. Write or update the report (new IDs continue after the highest
-   existing one). Ensure the branch rule from `easifem-conventions`.
+   existing one).
 3. Show a summary table (ID, title, location) to the user.
 4. Do not fix anything here; fixing is `/fix-bug <ID>`.
