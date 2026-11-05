@@ -168,7 +168,7 @@ formal generate --project doc/formal.md
 
 - Needs no library build. Pages go to `docs/api/` (git-ignored).
 - Only modules listed in `src_dir` of `doc/formal.md` are documented.
-  When documenting a module, add `../src/modules/<Module>/` to `src_dir`
+  When documenting a module, add `../src/modules/<Module>/src/` to `src_dir`
   if missing, and say so in the report.
 - Check the warnings. "Ignoring unknown Ford metadata key" means a line
   was read as a header field: first line must be `!> author:`, the

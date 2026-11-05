@@ -80,7 +80,7 @@ Use only the easifem CLI (`~/go/bin/easifem`). Never run `cmake`,
 |---|---|
 | Compile (check a change compiles) | `easifem dev <lib>` |
 | Install (needed before running examples; ask first) | `easifem install <lib> --no-download` |
-| Run an example/test | `cd <examples dir> && easifem run <File>.F90` |
+| Run an example/test | `cd <examples dir> && easifem run <File>.F90 --rebuild --cache-clean` |
 | Run all examples in the examples dir | `cd <examples dir> && easifem test ./` |
 | Clean (ask first) | `easifem clean <lib> [<lib> ...]` |
 
@@ -107,7 +107,7 @@ Running examples needs a `runner.toml` in the same directory; see
 
 1. `easifem dev <lib> --verbose`; fix compile errors.
 2. To run tests: ask to `easifem install <lib> --no-download`, then
-   `easifem run <File>.F90`. Report `ok` / `not ok` counts per file.
+   `easifem run <File>.F90 --rebuild --cache-clean`. Report `ok` / `not ok` counts per file.
 
 ### Major changes and downstream builds
 
