@@ -39,23 +39,18 @@ format (it counts as a file change), copying the closest existing
 ## Running
 
 ```bash
-cd src/modules/<Module>/examples
-easifem run <MethodName>_test_<N>.F90 --rebuild --cache-clean
+${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh src/modules/<Module>/examples/<MethodName>_test_<N>.F90
 # run batch test:
 easifem test <Examples directory path>
 ```
 
 - The installed library is what gets linked: after library changes, ask
   to `easifem install <lib> --no-download` first.
-- After an interface change, use `easifem run --rebuild <File>.F90`
-  (cleans the build dir first) or `touch` the test source; otherwise stale
-  objects are re-linked and the program crashes. `--cache-clean` re-runs
-  CMake from scratch; `--no-run` only builds.
-- `easifem run a.F90 b.F90` compiles both files into **one** executable;
-  to run several tests, loop over them one at a time.
-- **Do not trust the exit status.** `easifem run` returns success even
-  when compilation fails or the program crashes. Read the output: look
-  for `Error`, `error:`, `FAILED:`, `ninja: build stopped`, `not ok`,
-  backtraces.
+- `run-test.sh` runs `easifem run <File> --rebuild --cache-clean` from the
+  file's own directory, so stale objects are not a concern. It runs each
+  file as its own executable, in turn.
+- It prints only error lines and `ok`/`not ok` counts per file, and exits 1
+  on any compile, link, crash or `not ok`, or if `runner.toml` is missing.
+  On failure it prints the path of the full log; read that for backtraces.
 - `easifem run` regenerates `examples/CMakeLists.txt`; never commit it.
 - Report `ok` / `not ok` counts per file, and the failing labels.

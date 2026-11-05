@@ -42,7 +42,8 @@ Load `easifem-conventions` and follow
 5. **Apply.** Make sure the repository is on a `-claude` branch, then
    write the docblock. If documenting many routines would touch more than
    10 files, list them and wait for approval first.
-6. **Verify.** Docblock edits are minor changes; run `easifem dev <lib>`
+6. **Verify.** Docblock edits are minor changes; run
+   `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>`
    once at the end to confirm nothing broke. In classes, optionally run
    `formal` (see "Generating the docs" in `docblock-style.md`) and fix its
    metadata warnings. Report what was documented.

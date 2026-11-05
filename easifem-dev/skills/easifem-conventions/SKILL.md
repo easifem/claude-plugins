@@ -45,7 +45,7 @@ for build permission, see "AGENTS.md conflicts").
      is in use. If there are uncommitted changes, mention that they move
      with the switch.
    - Do this separately in every repository touched.
-2. **On a `-claude` branch, edits, `easifem dev`, `easifem run`, `easifem test` are
+2. **On a `-claude` branch, edits, `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh`, `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh`, `easifem test` are
    allowed** without asking.
 3. **`easifem install` asks first.** It writes to the shared install
    (`~/.easifem/easifem/install/<lib>`), which all other branches and the
@@ -73,14 +73,18 @@ The kernels do not depend on each other.
 
 ## Build commands
 
-Use only the easifem CLI (`~/go/bin/easifem`). Never run `cmake`,
-`ninja` or `make` directly.
+Use only the easifem CLI (`~/go/bin/easifem`), through the plugin scripts
+for compiling and running. Never run `cmake`, `ninja` or `make` directly.
+
+The scripts wrap `easifem dev` and `easifem run`, print only error lines
+and `ok`/`not ok` counts, and exit 1 on any compile, link, crash or
+`not ok`. On failure they print the path of the full log.
 
 | Purpose | Command |
 |---|---|
-| Compile (check a change compiles) | `easifem dev <lib>` |
+| Compile (check a change compiles) | `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>` |
 | Install (needed before running examples; ask first) | `easifem install <lib> --no-download` |
-| Run an example/test | `cd <examples dir> && easifem run <File>.F90 --rebuild --cache-clean` |
+| Run examples/tests | `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90 [<File>.F90 ...]` |
 | Run all examples in the examples dir | `cd <examples dir> && easifem test ./` |
 | Clean (ask first) | `easifem clean <lib> [<lib> ...]` |
 
@@ -105,9 +109,9 @@ Running examples needs a `runner.toml` in the same directory; see
 
 ### Workflow after a change
 
-1. `easifem dev <lib> --verbose`; fix compile errors.
+1. `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>`; fix compile errors.
 2. To run tests: ask to `easifem install <lib> --no-download`, then
-   `easifem run <File>.F90 --rebuild --cache-clean`. Report `ok` / `not ok` counts per file.
+   `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90`. Report `ok` / `not ok` counts per file.
 
 ### Major changes and downstream builds
 
@@ -122,12 +126,12 @@ Anything else (implementation-only edits inside submodules, docs) is
 minor.
 
 - Major change in **base** → (ask) install base, then
-  `easifem dev classes` (classes on its own `-claude` branch).
+  `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes` (classes on its own `-claude` branch).
 - Major change in **classes** → do not build kernels. Compile a kernel
   only when the user is working on it; mention that a previously built
   kernel may need recompiling next time.
-- After an interface change, `touch` the affected test files before
-  `easifem run`, or stale objects crash.
+- After an interface change, run the affected tests with
+  `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh`, which rebuilds from scratch; stale objects crash.
 
 Always state whether a finished change is major or minor and which
 downstream step (if any) is needed.
@@ -201,8 +205,7 @@ code; change old code only as an explicit refactoring task (`/refactor`).
 ## References
 
 - `references/naming.md` — class, method, overload naming rules.
-- `references/running-examples.md` — `runner.toml`, running tests,
-  known false failures.
+- `references/running-examples.md` — `runner.toml`, running tests.
 - `references/templates.md` — GPL header, module, submodule, debug
   rules, test template.
 - `references/test-example.md` — a complete real test program.
