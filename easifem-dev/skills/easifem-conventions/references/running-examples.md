@@ -44,8 +44,8 @@ ${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh src/modules/<Module>/examples/<MethodN
 easifem test <Examples directory path>
 ```
 
-- The installed library is what gets linked: after library changes, ask
-  to `easifem install <lib> --no-download` first.
+- The installed library is what gets linked: after library changes,
+  run `easifem install <lib> --no-download` first.
 - `run-test.sh` runs `easifem run <File> --rebuild --cache-clean` from the
   file's own directory, so stale objects are not a concern. It runs each
   file as its own executable, in turn.

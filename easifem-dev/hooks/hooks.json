@@ -1,5 +1,5 @@
 {
-  "description": "easifem-dev guards: edits only on -claude branches; ask before install, clean, deletes, risky git commands and fortitude without --no-fix.",
+  "description": "easifem-dev guards: edits only on -claude branches; ask before clean, deletes, risky git commands and fortitude without --no-fix.",
   "hooks": {
     "PreToolUse": [
       {

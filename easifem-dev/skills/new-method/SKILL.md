@@ -47,7 +47,7 @@ and `references/docblock-style.md` first.
    If the work would touch more than 10 files, list them and wait for
    approval first.
 6. **Build and test.** Run `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>` and fix compile
-   errors. To run the test, ask to `easifem install <lib> --no-download`
+   errors. To run the test, run `easifem install <lib> --no-download`
    (shared install), then run `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <test>.F90`.
    A new method is a **major** change: if `<lib>` is base, also (after
    install) run `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes` (classes on its own

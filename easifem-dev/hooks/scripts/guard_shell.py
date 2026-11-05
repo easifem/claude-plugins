@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """PreToolUse hook for shell commands.
 
-`easifem dev` and `easifem run` are allowed. Asks the user before
-`easifem install` (shared install), `easifem clean`, file deletion and
-risky git commands.
+`easifem dev`, `easifem run` and `easifem install --no-download` are
+allowed. Denies `easifem install` without --no-download. Asks the user
+before `easifem clean`, file deletion and risky git commands.
 """
 import json
 import re
@@ -11,7 +11,6 @@ import sys
 
 SEP = r"(?:^|[\s;&|()`])"
 RULES = [
-    (SEP + r"easifem\s+install\b", "easifem install (writes the shared install)"),
     (SEP + r"easifem\s+clean\b", "easifem clean"),
     (SEP + r"(?:rm|rmdir|unlink)\s", "deleting files"),
     (SEP + r"git\s+commit\b", "git commit"),

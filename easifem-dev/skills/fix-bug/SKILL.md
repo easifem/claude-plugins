@@ -24,7 +24,7 @@ Load `easifem-conventions`. Work on exactly one bug at a time.
 3. **Failing test first** (unless "docs only"): add or update a
    regression test `<MethodName>_test_<N>.F90` that fails with the current
    code. If existing tests all pass, say so and write one that exposes
-   the bug. Run it (install needs approval) or ask the user to run it,
+   the bug. Run it or ask the user to run it,
    and confirm it fails.
 4. **Fix** with the chosen option. Keep the change minimal.
 5. **Docs:** update the FORD docblock (behaviour, defaults, edge cases)

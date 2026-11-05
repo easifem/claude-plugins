@@ -47,10 +47,10 @@ for build permission, see "AGENTS.md conflicts").
    - Do this separately in every repository touched.
 2. **On a `-claude` branch, edits, `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh`, `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh`, `easifem test` are
    allowed** without asking.
-3. **`easifem install` asks first.** It writes to the shared install
-   (`~/.easifem/easifem/install/<lib>`), which all other branches and the
-   kernels link against. State this when asking. Never run `install`
-   without `--no-download`.
+3. **`easifem install` is allowed without asking.** It writes to the
+   shared install (`~/.easifem/easifem/install/<lib>`), which all other
+   branches and the kernels link against. Never run `install` without
+   `--no-download`.
 4. **More than 10 files → ask first.** If a task will create, modify or
    delete more than 10 files in total (across all repositories), list the
    files and the reason before touching any, and wait for approval.
@@ -83,7 +83,7 @@ and `ok`/`not ok` counts, and exit 1 on any compile, link, crash or
 | Purpose | Command |
 |---|---|
 | Compile (check a change compiles) | `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>` |
-| Install (needed before running examples; ask first) | `easifem install <lib> --no-download` |
+| Install (needed before running examples) | `easifem install <lib> --no-download` |
 | Run examples/tests | `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90 [<File>.F90 ...]` |
 | Run all examples in the examples dir | `cd <examples dir> && easifem test ./` |
 | Clean (ask first) | `easifem clean <lib> [<lib> ...]` |
@@ -110,7 +110,7 @@ Running examples needs a `runner.toml` in the same directory; see
 ### Workflow after a change
 
 1. `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>`; fix compile errors.
-2. To run tests: ask to `easifem install <lib> --no-download`, then
+2. To run tests: `easifem install <lib> --no-download`, then
    `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90`. Report `ok` / `not ok` counts per file.
 
 ### Major changes and downstream builds
@@ -125,7 +125,7 @@ A change is **major** when it does any of:
 Anything else (implementation-only edits inside submodules, docs) is
 minor.
 
-- Major change in **base** → (ask) install base, then
+- Major change in **base** → install base, then
   `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes` (classes on its own `-claude` branch).
 - Major change in **classes** → do not build kernels. Compile a kernel
   only when the user is working on it; mention that a previously built
@@ -147,7 +147,7 @@ submodule/interface mismatch after a major change), or on request.
 A repository's `AGENTS.md` holds only repository facts (layout,
 dependencies, paths). The rules in this plugin apply on top of it. If an
 older `AGENTS.md` says to ask before every build, the rule above
-(dev/run allowed on a `-claude` branch, install and clean ask) wins.
+(dev/run/install allowed on a `-claude` branch, clean asks) wins.
 
 ## Code style (summary)
 

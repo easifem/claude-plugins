@@ -60,9 +60,9 @@ approval. Even when fewer, wait if any naming choice is ambiguous.
 1. `grep` again: no old names left (report any intentional leftovers).
 2. `fortitude check --no-fix` on changed files.
 3. `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>`. Renaming specific procedures is a major
-   change: if it is base, ask to install base and then run
+   change: if it is base, install base and then run
    `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes`.
-4. Tests: ask to install, run the affected tests with
+4. Tests: install, run the affected tests with
    `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90 ...`, report.
 5. Report: mapping applied, files changed, build/test results.
    Commit only when the user asks (one commit per module).
