@@ -19,6 +19,7 @@ Author: Vikas Sharma, Ph. D. — <https://www.easifem.com> — License: GPL-3.0
 | `/bug-report` | Skill | Writes `bugs-report/<Module>_bug_report.md` with H/M/L entries. |
 | `/fix-bug` | Skill | One bug at a time: explain with options → failing test → fix → docs → report update. |
 | Command guard | Hook | Denies `easifem install` without `--no-download`. Asks before `easifem clean`, deleting files, commit, push, merge, rebase, hard reset, branch deletion, global git config, and `fortitude check` without `--no-fix`. |
+| LSP guidance | Hook | At session start, in a project root with a `.fortlsrc`, `.fortls.json` or `.fortls`, tells Claude to use LSP before grep for Fortran symbol lookups. Prints nothing elsewhere. |
 | `scripts/build.sh` | Script | Wraps `easifem dev <lib>`. Prints only error lines and exits 1 on any compile or link failure. |
 | `scripts/run-test.sh` | Script | Wraps `easifem run` for one or more files, each from its own directory. Prints only error lines and `ok`/`not ok` counts per file, and exits 1 on any compile, link, crash or `not ok`, or if `runner.toml` is missing. |
 | `zfls` | LSP server | Fortran code intelligence for `.F90` and `.f90` files (`.lsp.json`). |
