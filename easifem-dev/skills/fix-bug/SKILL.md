@@ -18,7 +18,8 @@ Load `easifem-conventions`. Work on exactly one bug at a time.
 
 1. **Read** the entry and the current code (it may have changed since the
    report was written).
-2. **Explain** the bug briefly, with options `(a)`, `(b)`, `(c)` and a
+2. **Explain** the bug briefly, starting with its location
+   (`File.F90:ProcedureName`), with options `(a)`, `(b)`, `(c)` and a
    recommendation (mention performance or API impact). "Docs only" is a
    valid option. **Wait for the user's choice.**
 3. **Failing test first** (unless "docs only"): add or update a
@@ -35,6 +36,7 @@ Load `easifem-conventions`. Work on exactly one bug at a time.
    them if they prefer) and confirm they pass.
 7. **Update the report:** remove the resolved entry (or reduce it to what
    remains open).
-8. **Report** major/minor and downstream steps. Commit only when the user
+8. **Report** what changed (one `File.F90:ProcedureName` per changed
+   procedure), major/minor and downstream steps. Commit only when the user
    says so (typically "tests pass, commit and move to <next ID>"); then
    continue with the next ID by returning to step 1.
