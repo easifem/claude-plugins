@@ -49,8 +49,8 @@ and `references/docblock-style.md` first.
    (shared install), then run `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <test>.F90`.
    A new method is a **major** change: if `<lib>` is base, also (after
    install) run `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh classes`.
-6. **Report.** Files changed, build/test results, and any
-   remaining downstream steps.
+6. **Report.** Changes as `File.F90:ProcedureName`, build/test results,
+   and any remaining downstream steps.
 
 ## Checks before proposing
 
