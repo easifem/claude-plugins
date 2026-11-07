@@ -22,12 +22,19 @@ changes (bug fixes, new features) out of it; note them for later.
 
 ## Phase 1: Inventory (read-only)
 
-1. Find every occurrence with `grep -rn` across **all** EASIFEM
-   repositories available (base, classes, kernels): definitions,
+1. For each symbol, use LSP first: `findReferences` for type-aware
+   callers, `goToImplementation` on the `obj_Name` interface for the
+   submodule body. Grep cannot tell which type a `%Name(...)` call
+   belongs to; LSP can.
+2. Then find every remaining occurrence with `grep -rn` across **all**
+   EASIFEM repositories available (base, classes, kernels): definitions,
    bindings, `GENERIC` lists, `MODULE PROCEDURE` lines, `END` lines,
    calls, docblocks, `See also: [[...]]`, tests, kernel examples, and
-   `CMakeLists.txt` entries.
-2. Classify callers: through the public generic (unaffected by renaming
+   `CMakeLists.txt` entries. LSP does not cover comments, CMake files,
+   excluded paths such as `examples/`, or repositories outside
+   `.fortlsrc`. For a grep hit on `%Name(...)` that LSP did not report,
+   check the receiver's type before treating it as a caller.
+3. Classify callers: through the public generic (unaffected by renaming
    specifics) vs. direct references (must change).
 
 ## Phase 2: Plan and approval
