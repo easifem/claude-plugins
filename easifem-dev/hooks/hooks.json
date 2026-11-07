@@ -1,6 +1,17 @@
 {
-  "description": "easifem-dev guards: ask before clean, deletes, risky git commands and fortitude without --no-fix.",
+  "description": "easifem-dev hooks: LSP guidance in Fortran projects; ask before clean, deletes, risky git commands and fortitude without --no-fix.",
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/scripts/lsp_context.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash|.*device_bash",

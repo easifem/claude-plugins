@@ -10,9 +10,10 @@ description: >
 
 # /review
 
-Arguments: optional files or a git range. Default: uncommitted changes
-(`git diff` and `git diff --cached`, plus untracked `.F90` files from
-`git status`).
+Arguments: optional files or a git or jj range. Default: uncommitted
+changes. In a jj repository use `jj diff` and `jj st`. Otherwise use
+`git diff` and `git diff --cached`, plus untracked `.F90` files from
+`git status`.
 
 Load `easifem-conventions` with its reference files. **Read only. Do
 not edit, build or run anything.**
