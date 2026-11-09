@@ -163,13 +163,14 @@ END INTERFACE
 ## Generating the docs (classes)
 
 ```bash
-formal generate --project doc/formal.md
+formal generate --project ford.md --output docs/api
 ```
 
-- Needs no library build. Pages go to `docs/api/` (git-ignored).
-- Only modules listed in `src_dir` of `doc/formal.md` are documented.
-  When documenting a module, add `../src/modules/<Module>/src/` to `src_dir`
-  if missing, and say so in the report.
+- Run it from the repository root. Needs no library build. Pages go to
+  `docs/api/` (git-ignored).
+- Only modules listed in `src_dir` of `ford.md` are documented. When
+  documenting a module, add `src/modules/<Module>/src/` to `src_dir` if
+  missing, and say so in the report.
 - Check the warnings. "Ignoring unknown Ford metadata key" means a line
   was read as a header field: first line must be `!> author:`, the
   Description must come before `Changes:` / `Returns:`, and no
