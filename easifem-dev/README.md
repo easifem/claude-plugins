@@ -18,6 +18,7 @@ Author: Vikas Sharma, Ph. D. — <https://www.easifem.com> — License: GPL-3.0
 | `/refactor` | Skill | Inventory → mapping table → approval → mechanical rename/restructure → verify. |
 | `/bug-report` | Skill | Writes `bugs-report/<Module>_bug_report.md` with H/M/L entries. |
 | `/fix-bug` | Skill | One bug at a time: explain with options → failing test → fix → docs → report update. |
+| `cookbook-writer` | Agent | Drafts or fixes entries in `../cookbook` following its `CLAUDE.md`, modelled on `recipes/fedof-h1-hierarchical.md`. Reads the library repos, never edits them. |
 | Command guard | Hook | Denies `easifem install` without `--no-download`, and git write commands in a jj repository. Asks before `easifem clean`, deleting files, commit, push, merge, rebase, hard reset, branch deletion, global git config, and `fortitude check` without `--no-fix`. For jj, also asks before `abandon`, `restore`, `op restore`, `op abandon`, `op revert`, changing or deleting bookmarks, `config --user` and `util gc`. |
 | LSP guidance | Hook | At session start, in a project root with a `.fortlsrc`, `.fortls.json` or `.fortls`, tells Claude to use LSP before grep for Fortran symbol lookups. Prints nothing elsewhere. |
 | `scripts/build.sh` | Script | Wraps `easifem dev <lib>`. Prints only error lines and exits 1 on any compile or link failure. |
