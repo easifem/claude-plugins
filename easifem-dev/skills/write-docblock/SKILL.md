@@ -24,7 +24,11 @@ Load `easifem-conventions` and follow
    matching `<MethodName>_test_<N>.F90`.
    - If one exists, use its program (without its `!> author:` docblock)
      as the `Examples` program. If it is longer than 100 lines, write a
-     short dummy example plus a `! Full example: <path>` line instead.
+     short dummy example instead.
+   - Below the program, link every matching test file with the repo
+     alias, e.g.
+     `! [Initiate test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`
+     (see "Links to the test files" in `docblock-style.md`).
    - If none exists, say so and offer to run `/write-test` first. Do not
      invent an untested example silently; if the user wants to proceed
      anyway, mark that the example still needs a matching test.
@@ -36,7 +40,8 @@ Load `easifem-conventions` and follow
    arguments instead. For classes, keep only one-line `!!` comments on
    bindings inside the `TYPE`.
 4. **Check.** Every line ≤ 78 characters; `!>` only on the first line;
-   example lines start with `! `; `USE` lines one item each; argument
+   example lines start with `! `; `USE` lines one item each; each test
+   link uses the right repo alias and points to an existing file; argument
    names match the interface exactly; no line in the Description starts
    with `word:`.
 5. **Apply.** Write the docblock. If documenting many routines would touch more than
