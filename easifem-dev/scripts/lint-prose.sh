@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: lint-prose.sh <file> [<file> ...]
+# Usage: lint-prose.sh [--lines A-B[,C-D...]] <file> [<file> ...]
 #
 # Checks documentation prose with Vale and the EASIFEM rules in
 # ../vale/: long sentences, passive voice, long asides in parentheses,
@@ -8,6 +8,10 @@
 # - .md files are checked as they are.
 # - .F90/.f90 files: the FORD docblock and `!!` prose is extracted first
 #   (f90doc2md.py), so reported line numbers match the Fortran source.
+#
+# --lines limits the output to alerts on those line ranges (in every
+# file), e.g. `--lines 850-1200` for the docblocks just edited. Use it on
+# large files to keep the output short.
 #
 # Output: one alert per line, `file:line:col:rule:message`. Exits 0 when
 # there are no warnings, 1 when there are warnings or errors, 2 on bad
@@ -18,8 +22,18 @@
 # ${XDG_CACHE_HOME:-~/.cache}/easifem-dev/vale; this needs network access
 # the first time.
 
+usage="usage: lint-prose.sh [--lines A-B[,C-D...]] <file> [<file> ...]"
+ranges=""
+if [ "$1" = "--lines" ]; then
+  ranges="$2"
+  shift 2
+  if ! printf '%s' "$ranges" | grep -Eq '^[0-9]+-[0-9]+(,[0-9]+-[0-9]+)*$'; then
+    echo "$usage" >&2
+    exit 2
+  fi
+fi
 if [ "$#" -eq 0 ]; then
-  echo "usage: lint-prose.sh <file> [<file> ...]" >&2
+  echo "$usage" >&2
   exit 2
 fi
 if ! command -v vale >/dev/null 2>&1; then
@@ -65,6 +79,13 @@ for file in "$@"; do
       ;;
   esac
   out=$(vale --config "$cache/.vale.ini" --output line --no-exit "$md")
+  if [ -n "$ranges" ] && [ -n "$out" ]; then
+    # Keep only alerts whose line (field 2) is inside one of the ranges.
+    out=$(printf '%s\n' "$out" | awk -F: -v r="$ranges" '
+      BEGIN { n = split(r, rr, ",")
+              for (i = 1; i <= n; i++) { split(rr[i], ab, "-"); lo[i] = ab[1]; hi[i] = ab[2] } }
+      { for (i = 1; i <= n; i++) if ($2 + 0 >= lo[i] && $2 + 0 <= hi[i]) { print; next } }')
+  fi
   if [ -n "$out" ]; then
     # Report the original file name, not the extracted copy.
     printf '%s\n' "$out" | sed "s|^$md:|$file:|"

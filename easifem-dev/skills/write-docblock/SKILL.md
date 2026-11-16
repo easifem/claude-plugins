@@ -53,7 +53,8 @@ Load `easifem-conventions` and follow
 5. **Apply.** Write the docblock. If documenting many routines would
    touch more than 10 files, list them and wait for approval first.
 6. **Lint the prose.** Run
-   `${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh <file>.F90` (see
+   `${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh --lines A-B <file>.F90`
+   with the line range of the docblocks you wrote (see
    "Prose linting" in `docblock-style.md`). Fix every alert on lines of
    the docblocks you wrote or changed; ignore alerts elsewhere in the
    file. Passive voice may stay when the active form reads worse.
