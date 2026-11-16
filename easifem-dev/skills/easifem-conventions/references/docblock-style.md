@@ -74,9 +74,19 @@ After the GPL header of a library file (none in test programs):
   minus any GPL header). Helpers go after `CONTAINS` inside the program.
 - **Exception — long tests.** When the test program is longer than 100
   lines, write a short "dummy example" instead: the minimal code that
-  shows the call, not meant to run by copy and paste. Below it, give the
-  full test path:
-  `! Full example: src/modules/<Module>/examples/<MethodName>_test_<N>.F90`.
+  shows the call, not meant to run by copy and paste. The link to the
+  full test (below) is then mandatory.
+- **Links to the test files.** After the closing `` !``` ``, link each
+  matching test file with a FORD alias. The alias is the repository name
+  (`|base|`, `|classes|`, `|elasticity|`, `|seepage|`, `|diffusion|`) and
+  points to that repository's `src/modules/`, so the path starts at the
+  module folder:
+  `! [Initiate test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`.
+  Link text is the file name without `.F90`, underscores as spaces. List
+  every `<MethodName>_test_<N>.F90` the example is based on, one per
+  line; use the alias of the repository the file lives in. Links go
+  alongside the inline program, never instead of it. Do not write plain
+  `Full example: <path>` lines.
 - Kind-overloaded routines: example uses `REAL(DFP)` / `INTEGER(I4B)` only.
 - Generic interfaces (`Initiate`, `Set`, `Insert`, ...): one example per
   distinct use case, not per specific procedure; thin wrappers point to
@@ -145,6 +155,8 @@ questions (including docs or tests not updated).
 !
 ! END PROGRAM main
 !```
+!
+! [SomeFunction test 1](|base|SomeModule/examples/SomeFunction_test_1.F90)
 !
 ! See also: [[RelatedRoutine]]
 

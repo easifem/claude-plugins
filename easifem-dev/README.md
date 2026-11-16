@@ -56,3 +56,51 @@ Author: Vikas Sharma, Ph. D. — <https://www.easifem.com> — License: GPL-3.0
 - `/review`
 - `/refactor HDF5File_Class: numbered overload names`
 - `/bug-report SortUtility` then `/fix-bug H-01`
+- "Write a cookbook recipe for FEDOF L2 DOFs" (runs `cookbook-writer`)
+
+## Cookbook writer
+
+The `cookbook-writer` agent drafts new entries in the EASIFEM cookbook
+or fixes existing ones. Claude delegates to it when you ask for a
+cookbook entry. Name the agent to be sure:
+
+- "Use the cookbook-writer agent to write a recipe for FEDOF L2 DOFs"
+- "Add a theory note on hierarchical bases"
+- "The FEDOF recipe is wrong about tsize, fix it"
+
+Run the session from a library repo (`base`, `classes`, `elasticity`,
+`seepage`, `diffusion`) or from `cookbook`. The agent looks for the
+cookbook at `<repo root>/../cookbook` and stops if it is not there.
+
+What it does:
+
+1. Reads `cookbook/CLAUDE.md` (its rules win) and the format model
+   `recipes/fedof-h1-hierarchical.md`.
+2. Looks for an existing entry in `INDEX.md`, `recipes/` and
+   `theory/`, and updates it rather than adding a duplicate.
+3. Regenerates `api-index/<repo>/INDEX.md` with
+   `scripts/gen_api_index.py` if it is missing or older than the
+   sources.
+4. Checks every detail against current code and tests, using LSP
+   first and grep as a fallback. Snippets are trimmed from real test
+   programs. Numbers come from `CALL OK(...)` checks or the code;
+   anything it cannot trace is left out or marked `(unverified)`.
+5. Writes `recipes/<topic>.md` or `theory/<topic>.md` and updates
+   `INDEX.md`.
+6. Final checks: no line over 78 characters, no local paths
+   (`/home/`, `Dropbox`, `~/`), every `<repo>:<path>` link resolves,
+   and the entry is listed in `INDEX.md`.
+
+Limits:
+
+- Never edits the library repos. Writes only under `cookbook/`, and
+  does not build or run examples.
+- Never commits, describes, pushes or moves bookmarks. Review the
+  result and run `jj describe` yourself.
+- Cannot ask questions while it runs. If the request is vague, it
+  writes only what it is sure of and lists open questions. Name the
+  repo, say recipe or theory note, and give the scope.
+
+It reports the files it changed, the source checked for each claim,
+claims left out or marked `(unverified)`, disagreements between
+entries and code, open questions, and the results of the final checks.

@@ -40,9 +40,11 @@ not edit, build or run anything.**
 4. **Headers.** GPL header in new library files; none in test programs.
 5. **Docblocks.** Rules in `docblock-style.md`: `Changes:` not
    `update:`, no `Arguments:` section, `!!` comment on every argument;
-   `Examples` present and matching an existing test (dummy example plus
-   path for tests over 100 lines). For changed methods, check the docs
-   were updated in the same change ("Keeping docs in sync").
+   `Examples` present and matching an existing test (dummy example for
+   tests over 100 lines), with a `|<repo>|` alias link to each test file
+   that exists; no plain `Full example:` lines. For changed methods,
+   check the docs were updated in the same change ("Keeping docs in
+   sync").
 6. **Tests.** Each new or changed public routine has a
    `<MethodName>_test_<N>.F90`; kind-overloaded tests use only DFP/I4B.
 7. **Change size.** Classify as **major** (interface change, new field,
