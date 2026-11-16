@@ -33,11 +33,10 @@ it is `<plugin>`. Read, before writing anything:
    `!!` comments, section banners). Never change code, `USE` lines,
    interfaces or declarations. If the docs cannot be right without a
    code change, report it instead.
-2. **Facts come from the code.** Read the interface in
-   `src/modules/<M>/src/` and the implementation in
-   `src/submodules/<M>/src/` before describing behaviour. Use LSP (go to
-   definition, find references) for symbols; fall back to Grep.
-   Defaults, ranges and conditions must match the code.
+2. **Facts come from the code.** Read the implementation of each
+   routine before describing it. Defaults, ranges and conditions must
+   match the code. Read only what you need (see "Reading"); never read
+   whole module or submodule files.
 3. **Examples come from tests.** The `Examples` program is the matching
    test in `src/modules/<M>/examples/<MethodName>_test_<N>.F90`, minus
    its `!> author:` block, or a dummy example for tests over 100 lines.
@@ -53,9 +52,12 @@ it is `<plugin>`. Read, before writing anything:
    and `date:`. `Changes:` records changes to the routine, not to its
    docs: never add an entry for your edits, even when you correct a
    wrong statement. List such corrections in the report instead.
-6. **Scope.** Work only on the files or routines you were given. If the
-   task would touch more than 10 files, do the first file, then stop
-   and list the rest in the report.
+6. **Scope and batch size.** Work only on the routines you were given.
+   Do at most **10 docblocks per run**, taken in file order, one
+   submodule category at a time (for example all `Set` methods, then
+   all `Get` methods). When more are in scope, stop after 10 and list
+   the rest, with their line numbers, under "Remaining" in the report,
+   so the caller can start a fresh run for the next batch.
 7. **No version control, builds or tests.** Do not commit, describe,
    push, move bookmarks, build, install or run examples. The caller
    does that.
@@ -63,16 +65,36 @@ it is `<plugin>`. Read, before writing anything:
    you run. If something is unclear (meaning of an argument, intended
    behaviour), write only what you are sure of and list the questions.
 
+## Reading
+
+Everything you read stays in your context and is processed again on
+every later step, so read narrowly:
+
+- Find the docblocks with `grep -n "summary:" <file>` (or `^!> author`)
+  and read only those line ranges (Read with `offset` and `limit`),
+  from the `!>` line to `END INTERFACE`.
+- Find each implementation with LSP (go to definition on the procedure
+  name) or `grep -n "MODULE PROCEDURE <name>" src/submodules/<M>/src/*`,
+  and read only that procedure, up to `END PROCEDURE`.
+- Follow a call into another procedure only when the docs depend on
+  it (a default, a check, an error).
+- List the tests with `ls src/modules/<M>/examples/<MethodName>_test_*`
+  and read only those. Check a test's length with `wc -l` before
+  reading it; over 100 lines, read only what the dummy example needs.
+- Do not reread a range you have already read unless you edited it.
+
 ## Workflow
 
-For each file:
-
-1. Read the file and the matching submodule(s) and tests.
-2. Write or rewrite each docblock and `!!` comment in scope.
-3. Lint: `<plugin>/scripts/lint-prose.sh <file>.F90`. Fix every alert on
-   lines you wrote. Passive voice may stay when the active form reads
-   worse; `Readability.*` is information only. Exit 3 means Vale is
-   missing: skip and say so.
+1. Locate the docblocks in scope and pick the batch (rule 6).
+2. For each routine, read its docblock, implementation and tests
+   ("Reading"), then write or rewrite its docblock and `!!` comments.
+3. Lint only the lines you edited:
+   `<plugin>/scripts/lint-prose.sh --lines A-B[,C-D...] <file>.F90`,
+   with the line ranges of the docblocks in the batch (edits shift line
+   numbers, so take them from `grep -n` after editing). Never lint the
+   whole file. Fix every alert. Passive voice may stay when the active
+   form reads worse; `Readability.*` is information only. Exit 3 means
+   Vale is missing: skip and say so.
 4. Check: every line ≤ 78 characters
    (`awk 'length > 78 {print FILENAME":"FNR}' <file>`; only test link
    lines may be longer); `!>` only on
@@ -81,9 +103,10 @@ For each file:
    the interface; each alias link points to an existing file.
 5. Reread every docblock you wrote as a new user would. Vale checks
    only mechanics. Rewrite any sentence that needs a second reading.
-6. Confirm only comments changed: `jj diff <file>` (or `git diff`)
-   shows no changed line that does not start with `!` after leading
-   spaces.
+6. Confirm only comments changed. This prints nothing when the check
+   passes; do not print the whole diff:
+   `jj diff --git <file> | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' | grep -vE '^[+-][[:space:]]*(!|$)'`
+   (in a git-only repo use `git diff <file>` in place of `jj diff --git`).
 
 ## Report
 
@@ -95,4 +118,6 @@ Return, briefly:
 - statements in the old docs that disagreed with the code (one line
   each);
 - open questions for the user;
-- whether the comments-only check passed.
+- whether the comments-only check passed;
+- **Remaining:** routines in scope not done in this run, with line
+  numbers (empty if all are done).

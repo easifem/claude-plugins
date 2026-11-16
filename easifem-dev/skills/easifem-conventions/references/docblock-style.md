@@ -95,7 +95,8 @@ After:
 `${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh <file> [...]` checks the
 text with Vale. It takes `.F90` files (docblock and `!!` prose only,
 line numbers match the source) and `.md` files. Output is one alert per
-line: `file:line:col:rule:message`.
+line: `file:line:col:rule:message`. On large files pass
+`--lines A-B[,C-D...]` to report only the lines you edited.
 
 | Rule | Checks |
 |---|---|
