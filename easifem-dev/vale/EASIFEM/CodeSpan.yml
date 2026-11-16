@@ -1,0 +1,15 @@
+extends: existence
+message: "Put '%s' in backticks."
+level: warning
+scope: text
+nonword: true
+tokens:
+  # camelCase / mixedCase: nbcField, addContribution, spaceCompo
+  - '\b[a-z]+[A-Z][A-Za-z0-9]*\b'
+  # type names with trailing underscore: VectorField_, FEDOF_
+  - '\b[A-Za-z][A-Za-z0-9]*_(?![A-Za-z0-9])'
+  # snake_case: lis_vector_copy, obj_Initiate2
+  - '\b[A-Za-z]+_[A-Za-z0-9_]+\b'
+  # component access and calls: obj%nbc_point, dbc%Get, Get()
+  - '\b\w+%\w+(?:\(\))?'
+  - '\b[A-Za-z]\w*\(\)'

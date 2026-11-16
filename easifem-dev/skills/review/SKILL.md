@@ -29,8 +29,8 @@ not edit, build or run anything.**
    files listed in `CMakeLists.txt`; type-bound binding present (classes).
 3. **Style.** `ONLY` on every `USE`, one item per line; kinds from
    `GlobalData`; `INTENT` on all dummies; `!!` argument comments
-   (classes); `IMPLICIT NONE`; line length ≤ 78; naming per
-   `references/naming.md` (PascalCase bindings, `obj_` procedures,
+   (classes); `IMPLICIT NONE`; line length ≤ 78 (test link lines may be
+   longer); naming per `references/naming.md` (PascalCase bindings, `obj_` procedures,
    numbered overloads, no type-suffixed names in new code); banners;
    debug guards (`[START]`/`[END]`, `[END]` before early `RETURN`,
    `modName`/`myName` inside `#ifdef DEBUG_VER`, `modName` in the
@@ -42,9 +42,16 @@ not edit, build or run anything.**
    `update:`, no `Arguments:` section, `!!` comment on every argument;
    `Examples` present and matching an existing test (dummy example for
    tests over 100 lines), with a `|<repo>|` alias link to each test file
-   that exists; no plain `Full example:` lines. For changed methods,
-   check the docs were updated in the same change ("Keeping docs in
-   sync").
+   that exists; no plain `Full example:` lines. Text follows "Writing
+   the text" (short sentences, one idea each, main action first, no
+   internals, code words in backticks); quote hard-to-read sentences.
+   Emphasis uses `! @note` ... `! @endnote` admonitions, not bold or
+   capitals; no `@history`; no stale `@bug` for a fixed bug. For
+   changed methods, check the docs were updated in the same change
+   ("Keeping docs in sync"). Run
+   `${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh` on the changed `.F90`
+   and `.md` files and report only alerts on changed lines (exit 3:
+   note that Vale is missing).
 6. **Tests.** Each new or changed public routine has a
    `<MethodName>_test_<N>.F90`; kind-overloaded tests use only DFP/I4B.
 7. **Change size.** Classify as **major** (interface change, new field,

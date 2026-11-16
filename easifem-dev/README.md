@@ -19,10 +19,13 @@ Author: Vikas Sharma, Ph. D. — <https://www.easifem.com> — License: GPL-3.0
 | `/bug-report` | Skill | Writes `bugs-report/<Module>_bug_report.md` with H/M/L entries. |
 | `/fix-bug` | Skill | One bug at a time: explain with options → failing test → fix → docs → report update. |
 | `cookbook-writer` | Agent | Drafts or fixes entries in `../cookbook` following its `CLAUDE.md`, modelled on `recipes/fedof-h1-hierarchical.md`. Reads the library repos, never edits them. |
+| `doc-writer` | Agent | Writes or rewrites FORD docblocks and `!!` comments for whole files or modules, following `docblock-style.md`, then lints with `lint-prose.sh`. Edits comments only, never code. |
+| `reviewer` | Agent | Independent read-only review of changes in a fresh context, using the `/review` checklist plus `lint-prose.sh` and `fortitude --no-fix`. |
 | Command guard | Hook | Denies `easifem install` without `--no-download`, and git write commands in a jj repository. Asks before `easifem clean`, deleting files, commit, push, merge, rebase, hard reset, branch deletion, global git config, and `fortitude check` without `--no-fix`. For jj, also asks before `abandon`, `restore`, `op restore`, `op abandon`, `op revert`, changing or deleting bookmarks, `config --user` and `util gc`. |
 | LSP guidance | Hook | At session start, in a project root with a `.fortlsrc`, `.fortls.json` or `.fortls`, tells Claude to use LSP before grep for Fortran symbol lookups. Prints nothing elsewhere. |
 | `scripts/build.sh` | Script | Wraps `easifem dev <lib>`. Prints only error lines and exits 1 on any compile or link failure. |
 | `scripts/run-test.sh` | Script | Wraps `easifem run` for one or more files, each from its own directory. Prints only error lines and `ok`/`not ok` counts per file, and exits 1 on any compile, link, crash or `not ok`, or if `runner.toml` is missing. |
+| `scripts/lint-prose.sh` | Script | Checks doc prose in `.F90` docblocks and `.md` files with Vale and the EASIFEM rules in `vale/` (long sentences, passive voice, code words outside backticks). Needs `vale` installed; exits 3 and skips when it is missing. |
 | `zfls` | LSP server | Fortran code intelligence for `.F90` and `.f90` files (`.lsp.json`). |
 
 ## Working rules built in

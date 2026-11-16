@@ -1,0 +1,6 @@
+extends: existence
+message: "Long aside in parentheses. Give it its own sentence."
+level: suggestion
+scope: sentence
+raw:
+  - '\([a-z ,]{30,}\)'

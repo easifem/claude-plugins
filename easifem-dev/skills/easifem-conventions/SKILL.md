@@ -126,6 +126,7 @@ and `ok`/`not ok` counts, and exit 1 on any compile, link, crash or
 | Compile (check a change compiles) | `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>` |
 | Install (needed before running examples) | `easifem install <lib> --no-download` |
 | Run examples/tests | `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90 [<File>.F90 ...]` |
+| Lint doc prose (Vale) | `${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh <File>.F90\|<file>.md ...` |
 | Run all examples in the examples dir | `cd <examples dir> && easifem test ./` |
 | Clean (ask first) | `easifem clean <lib> [<lib> ...]` |
 
@@ -227,8 +228,9 @@ older `AGENTS.md` says to ask before every build, the rule above
 ## Documentation
 
 Every public interface has a FORD docblock with an `Examples` program
-(`references/docblock-style.md`). **Whenever a method changes, update its
-docs in the same change** (see "Keeping docs in sync with code" there).
+(`references/docblock-style.md`). Write the text in short, plain
+sentences, one idea each ("Writing the text" there). **Whenever a
+method changes, update its docs in the same change** (see "Keeping docs in sync with code" there).
 Do not list doc updates in reports; do report docs or tests left for
 later.
 
