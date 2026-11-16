@@ -59,7 +59,7 @@ and `references/docblock-style.md` first.
 - GPL header present in new library files, absent from the test.
 - Docblock `Examples` program is identical to the test body (or, for a
   test over 100 lines, a dummy example), followed by an alias link to the
-  test, e.g. `! [Foo test 1](|classes|Module/examples/Foo_test_1.F90)`.
+  test, e.g. `! [test 1](|classes|Module/examples/Foo_test_1.F90)`.
 - DEBUG guards: `[START]`/`[END]` (also before early `RETURN`), checks
   only inside `#ifdef DEBUG_VER`; a new submodule declares `modName`
   inside `#ifdef DEBUG_VER`.

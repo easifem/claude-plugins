@@ -50,6 +50,29 @@ relative to the library repo root.
 7. **Snippets come from tests.** Build each Fortran snippet by trimming
    a real test program, not from scratch, and name that test in
    `## Example files`.
+8. **Write plain, human-readable English.** The reader is new to the
+   topic.
+   - Short sentences, one idea each; aim for 15 words or fewer. Split a
+     sentence that joins two actions with "or", "and" or a comma.
+   - Main point first. Conditions and special cases follow, each in its
+     own sentence ("If isBrokenSpace is true, ...").
+   - Active voice and plain verbs: "sets", "adds", "returns", not
+     "become", "is added", "denote".
+   - No meaning hidden in parentheses; give it its own sentence.
+   - Steps as a numbered list, one action per item.
+   - Every programming word goes in backticks: names of arguments,
+     variables, components, types, procedures and files, keywords,
+     literals and expressions (`nbcField`, `VectorField_`, `Set`,
+     `obj%nbc_point`, `"HIER"`, `scale * VALUE`). Plain English stays
+     plain.
+   - Explain each term the first time it appears.
+   - Leave out internals the reader does not need to use the API.
+
+   Before: "All values (all components of all nodes) become scale *
+   VALUE, or scale * VALUE is added with addContribution."
+   After: "Set every value of the field to `scale * VALUE`. This
+   covers all components at all nodes. If `addContribution` is true,
+   add `scale * VALUE` to the current values instead."
 
 ## Looking up symbols
 
@@ -88,6 +111,14 @@ if LSP is not available or finds nothing.
    - `grep -nE '/home/|Dropbox|~/' <files>` prints nothing (public repo).
    - Every `<repo>:<path>` link resolves: `../<repo>/<path>` exists.
    - The entry is listed in `../cookbook/INDEX.md`.
+   - `${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh <files>` reports no
+     alerts on lines you wrote, except passive voice that reads better
+     than the active form. It reports `file:line:col:rule:message`;
+     `Readability.*` is information only. Exit 3 means Vale is missing:
+     skip the check and say so in the report.
+   - Reread the prose against rule 8. Vale only checks mechanics. Rewrite
+     any sentence that needs a second reading. When fixing an entry, also
+     rewrite hard-to-read sentences in the parts you touch.
 
 ## Report
 

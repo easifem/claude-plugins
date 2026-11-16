@@ -27,7 +27,7 @@ Load `easifem-conventions` and follow
      short dummy example instead.
    - Below the program, link every matching test file with the repo
      alias, e.g.
-     `! [Initiate test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`
+     `! [test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`
      (see "Links to the test files" in `docblock-style.md`).
    - If none exists, say so and offer to run `/write-test` first. Do not
      invent an untested example silently; if the user wants to proceed
@@ -36,17 +36,29 @@ Load `easifem-conventions` and follow
    `summary:`, Description, `Changes:` (when revising an existing block,
    add a dated entry; never `update:`), `Returns:` (functions),
    `Formula:` (only real mathematics), `Examples`, `See also:`.
+   Put must-know constraints in `! @note` / `! @warning` blocks (see
+   "Admonitions" in `docblock-style.md`), not in bold or capitals.
    No `Arguments:` section: fill missing `!!` comments on the dummy
    arguments instead. For classes, keep only one-line `!!` comments on
    bindings inside the `TYPE`.
-4. **Check.** Every line ≤ 78 characters; `!>` only on the first line;
-   example lines start with `! `; `USE` lines one item each; each test
-   link uses the right repo alias and points to an existing file; argument
+4. **Check.** Every line ≤ 78 characters (test link lines excepted);
+   `!>` only on the first line; example lines start with `! `; `USE`
+   lines one item each; each test link uses the right repo alias and
+   points to an existing file; argument
    names match the interface exactly; no line in the Description starts
-   with `word:`.
-5. **Apply.** Write the docblock. If documenting many routines would touch more than
-   10 files, list them and wait for approval first.
-6. **Verify.** Docblock edits are minor changes; run
+   with `word:`. Reread the text against "Writing the text" in
+   `docblock-style.md`: split long or two-action sentences, put the main
+   action first, drop internals and parentheses that carry meaning, put
+   every programming word in backticks.
+5. **Apply.** Write the docblock. If documenting many routines would
+   touch more than 10 files, list them and wait for approval first.
+6. **Lint the prose.** Run
+   `${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh <file>.F90` (see
+   "Prose linting" in `docblock-style.md`). Fix every alert on lines of
+   the docblocks you wrote or changed; ignore alerts elsewhere in the
+   file. Passive voice may stay when the active form reads worse.
+   Exit 3 means Vale is missing: skip and say so in the report.
+7. **Verify.** Docblock edits are minor changes; run
    `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>`
    once at the end to confirm nothing broke. In classes, optionally run
    `formal` (see "Generating the docs" in `docblock-style.md`) and fix its

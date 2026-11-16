@@ -29,7 +29,8 @@ Load `easifem-conventions`. Work on exactly one bug at a time.
    and confirm it fails.
 4. **Fix** with the chosen option. Keep the change minimal.
 5. **Docs:** update the FORD docblock (behaviour, defaults, edge cases)
-   and re-copy the `Examples` program from the updated test.
+   and re-copy the `Examples` program from the updated test. Remove any
+   `! @bug` ... `! @endbug` admonition for this bug.
 6. **Verify:** `fortitude check --no-fix`,
    `${CLAUDE_PLUGIN_ROOT}/scripts/build.sh <lib>`, then run the tests with
    `${CLAUDE_PLUGIN_ROOT}/scripts/run-test.sh <File>.F90 ...` (or ask the user to run

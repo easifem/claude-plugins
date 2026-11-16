@@ -33,11 +33,122 @@ Applies to the docblock above each `INTERFACE` (and each `TYPE`).
    `!!` comment directly below its declaration, including array sizes
    and active ranges. Fill in missing ones. These comments are the only
    source of truth for argument meaning.
-6. Wrap every line to ≤ 78 characters.
+6. Wrap every line to ≤ 78 characters (except test link lines, see
+   "Examples section").
 7. Be factual. When adapting text from another routine, fix argument
    names, called methods and banners.
 8. Avoid Description lines that start with `word:`; FORD reads them as
    header fields.
+
+## Writing the text
+
+Write for a person reading the docs for the first time. Plain,
+human-readable English matters more than squeezing in every fact.
+
+- **Short sentences, one idea each.** Aim for 15 words or fewer. If a
+  sentence has "or", "and" or a comma joining two actions, split it.
+- **Main action first.** The first sentence says what the routine does
+  for the caller. Conditions and special cases come after, each in its
+  own sentence ("If addContribution is true, ...").
+- **Active voice, plain verbs.** "Sets", "adds", "returns", not "become",
+  "is added", "denote".
+- **No parentheses carrying meaning.** Move the content into its own
+  sentence.
+- **Steps as a numbered list**, one step per item, when the routine does
+  several things in order.
+- **Code in backticks.** Every programming word goes in backticks:
+  argument, variable and component names (`nbcField`, `obj`, `scale`),
+  type names (`VectorField_`), procedures (`Set`, `lis_vector_copy`),
+  component access (`obj%nbc_point`), keywords and literals (`.TRUE.`,
+  `"HIER"`), and expressions (`scale * VALUE`). Plain English words stay
+  plain: "the field", "each node". `[[...]]` FORD links need no
+  backticks.
+- **Explain a term the first time** it appears, or link it with `[[...]]`.
+- **Leave out internals** the caller does not need (which helper it
+  calls, order of internal loops). Mention a called method only in
+  `See also:`.
+- **Reread before finishing.** If a sentence needs a second reading,
+  rewrite it.
+
+Before:
+
+```fortran
+! All values (all components of all nodes) become scale * VALUE, or
+! scale * VALUE is added with addContribution. It calls SetAll of
+! AbstractNodeField_.
+```
+
+After:
+
+```fortran
+! Sets every value of the field to `scale * VALUE`.
+! This covers all components at all nodes.
+!
+! If `addContribution` is true, it adds `scale * VALUE` to the current
+! values instead.
+!
+! See also: [[AbstractNodeField_:SetAll]]
+```
+
+## Prose linting
+
+`${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh <file> [...]` checks the
+text with Vale. It takes `.F90` files (docblock and `!!` prose only,
+line numbers match the source) and `.md` files. Output is one alert per
+line: `file:line:col:rule:message`.
+
+| Rule | Checks |
+|---|---|
+| `EASIFEM.SentenceLength` | sentence over 20 words |
+| `EASIFEM.CodeSpan` | camelCase, `snake_case`, `Type_`, `a%b`, `f()` outside backticks |
+| `EASIFEM.Parens` | long aside in parentheses |
+| `write-good.Passive` | passive voice |
+| `write-good.So`, `write-good.ThereIs` | weak sentence openings |
+| `Readability.FleschReadingEase` | file-level score; information only |
+
+- Fix alerts on the lines you wrote or changed. Leave the rest of the
+  file alone unless asked.
+- Passive voice may stay when the active form reads worse.
+- `CodeSpan` cannot see plain lowercase names (`obj`, `scale`); put
+  those in backticks by hand.
+- Exit codes: 0 clean, 1 alerts, 2 bad usage, 3 Vale missing or its
+  styles could not be synced. On 3, skip the check and say so.
+
+Vale only checks the mechanics. Main action first, no internals and
+explained terms still need a careful reread.
+
+## Admonitions
+
+Use FORD admonitions for text the reader must not miss. Do not use bold
+or capitals for emphasis.
+
+| Admonition | Use for |
+|---|---|
+| `@note` | a constraint or surprising behaviour the caller must know |
+| `@warning` | misuse that gives wrong results, a crash or lost data |
+| `@bug` | a known bug not yet fixed; give its ID if it is in `bugs-report/` |
+| `@todo` | planned work that changes how the routine is used |
+
+Do not use `@history`; changes go in `Changes:`.
+
+Format: the opening and closing markers on their own lines, written
+`! @note` and `! @endnote` (one space after `!`, like other lines).
+
+```fortran
+! @note
+! `obj` and `VALUE` can be the same field. The two ranges must not
+! overlap.
+! @endnote
+```
+
+- Place an admonition in the Description, right after the paragraph it
+  belongs to, and before `Changes:`.
+- One point per admonition. Follow "Writing the text" inside it.
+- Use them sparingly, at most two or three per docblock. Do not repeat
+  the main description in a note: "Without `addContribution`, the
+  values are set to `scale * VALUE`" belongs in the Description.
+- Add `@bug` or `@todo` only when the user asks or a bug report lists
+  the issue. Remove it in the same change that fixes the bug.
 
 ### classes specifics
 
@@ -81,12 +192,15 @@ After the GPL header of a library file (none in test programs):
   (`|base|`, `|classes|`, `|elasticity|`, `|seepage|`, `|diffusion|`) and
   points to that repository's `src/modules/`, so the path starts at the
   module folder:
-  `! [Initiate test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`.
-  Link text is the file name without `.F90`, underscores as spaces. List
-  every `<MethodName>_test_<N>.F90` the example is based on, one per
-  line; use the alias of the repository the file lives in. Links go
-  alongside the inline program, never instead of it. Do not write plain
-  `Full example: <path>` lines.
+  `! [test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`.
+  Link text is `test <N>`, the number of the test file. List every
+  `<MethodName>_test_<N>.F90` the example is based on, one per line;
+  use the alias of the repository the file lives in. Always inline
+  links; no reference-style links (`[test 1][label]`), because `formal`
+  puts a whole module on one page and labels clash. A link line may
+  exceed 78 characters when the path is long; it is the only exception
+  to the line limit. Links go alongside the inline program, never
+  instead of it. Do not write plain `Full example: <path>` lines.
 - Kind-overloaded routines: example uses `REAL(DFP)` / `INTEGER(I4B)` only.
 - Generic interfaces (`Initiate`, `Set`, `Insert`, ...): one example per
   distinct use case, not per specific procedure; thin wrappers point to
@@ -130,6 +244,10 @@ questions (including docs or tests not updated).
 !
 ! Longer description. Wrap lines to 78 characters.
 !
+! @note
+! `w` must have the same size as `x`.
+! @endnote
+!
 ! Changes:
 !   - 2026-02-01: Added optional argument w
 !
@@ -156,7 +274,7 @@ questions (including docs or tests not updated).
 ! END PROGRAM main
 !```
 !
-! [SomeFunction test 1](|base|SomeModule/examples/SomeFunction_test_1.F90)
+! [test 1](|base|SomeModule/examples/SomeFunction_test_1.F90)
 !
 ! See also: [[RelatedRoutine]]
 
