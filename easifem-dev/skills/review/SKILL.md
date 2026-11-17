@@ -40,9 +40,9 @@ not edit, build or run anything.**
 4. **Headers.** GPL header in new library files; none in test programs.
 5. **Docblocks.** Rules in `docblock-style.md`: `Changes:` not
    `update:`, no `Arguments:` section, `!!` comment on every argument;
-   `Examples` present and matching an existing test (dummy example for
-   tests over 100 lines), with a `|<repo>|` alias link to each test file
-   that exists; no plain `Full example:` lines. Text follows "Writing
+   `Examples` is a list of `|<repo>|` alias links, one per existing test
+   file, with no inline program or snippet; no plain `Full example:`
+   lines. Text follows "Writing
    the text" (short sentences, one idea each, main action first, no
    internals, code words in backticks); quote hard-to-read sentences.
    Emphasis uses `! @note` ... `! @endnote` admonitions, not bold or

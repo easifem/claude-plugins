@@ -34,7 +34,7 @@ and `references/docblock-style.md` first.
    kinds, intents, result) and algorithm in a few lines, and ask how the
    user wants it done before writing (one task at a time).
 4. **Write.** Create or update:
-   - the interface (with full FORD docblock, Examples taken from the new
+   - the interface (with full FORD docblock, `Examples` linking the new
      test),
    - for classes: the new binding line in `TYPE ... CONTAINS` and, if the
      method belongs to a generic, the generic binding change,
@@ -57,9 +57,8 @@ and `references/docblock-style.md` first.
 - Every line ≤ 78 characters; one item per `USE ..., ONLY:` line.
 - All dummy arguments have `INTENT` (and `!!` comments in classes).
 - GPL header present in new library files, absent from the test.
-- Docblock `Examples` program is identical to the test body (or, for a
-  test over 100 lines, a dummy example), followed by an alias link to the
-  test, e.g. `! [test 1](|classes|Module/examples/Foo_test_1.F90)`.
+- Docblock `Examples` is a link to the test, no inline program, e.g.
+  `! - [test 1](|classes|Module/examples/Foo_test_1.F90)`.
 - DEBUG guards: `[START]`/`[END]` (also before early `RETURN`), checks
   only inside `#ifdef DEBUG_VER`; a new submodule declares `modName`
   inside `#ifdef DEBUG_VER`.
