@@ -39,8 +39,8 @@ Load `easifem-conventions` and use the test template in
      exact.
    - Kind-overloaded routines: test `REAL(DFP)` and `INTEGER(I4B)` only.
    - Helpers after `CONTAINS`. Lines ≤ 78 characters.
-   - Keep it suitable to paste into the routine's docblock `Examples`
-     (over 100 lines → the docblock gets a dummy example instead).
+   - The docblock's `Examples` links to this file, so make it readable
+     on its own: a reader opens it to learn how to call the routine.
 4. **Write.** Create the file, plus a `runner.toml` if the directory has none (see
    `references/running-examples.md`). More than 10 files → list them and
    wait for approval.

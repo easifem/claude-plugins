@@ -37,13 +37,13 @@ it is `<plugin>`. Read, before writing anything:
    routine before describing it. Defaults, ranges and conditions must
    match the code. Read only what you need (see "Reading"); never read
    whole module or submodule files.
-3. **Examples come from tests.** The `Examples` program is the matching
-   test in `src/modules/<M>/examples/<MethodName>_test_<N>.F90`, minus
-   its `!> author:` block, or a dummy example for tests over 100 lines.
-   Add an inline `! [test <N>](|<repo>|<M>/examples/<file>)` link to
-   every matching test; never reference-style links. If no test
-   exists, leave `Examples` out and list the routine in the report. Do
-   not invent untested examples.
+3. **Examples are links to tests.** `Examples` lists one inline
+   `! - [test <N>](|<repo>|<M>/examples/<file>)` link per matching
+   test in `src/modules/<M>/examples/<MethodName>_test_<N>.F90`. Never
+   copy a test program into the docblock; replace an inline program
+   you find in a docblock you rewrite. No reference-style links. If no
+   test exists, leave `Examples` out and list the routine in the
+   report.
 4. **Write for a new reader.** Follow "Writing the text" and
    "Admonitions" in `docblock-style.md`: short sentences, one idea
    each, main action first, steps as numbered lists, code words in
@@ -78,9 +78,9 @@ every later step, so read narrowly:
   and read only that procedure, up to `END PROCEDURE`.
 - Follow a call into another procedure only when the docs depend on
   it (a default, a check, an error).
-- List the tests with `ls src/modules/<M>/examples/<MethodName>_test_*`
-  and read only those. Check a test's length with `wc -l` before
-  reading it; over 100 lines, read only what the dummy example needs.
+- List the tests with `ls src/modules/<M>/examples/<MethodName>_test_*`.
+  Linking needs only the file names; read a test only when the
+  Description depends on it, and then only the lines you need.
 - Do not reread a range you have already read unless you edited it.
 
 ## Workflow
@@ -100,7 +100,8 @@ every later step, so read narrowly:
    lines may be longer); `!>` only on
    first docblock lines; no `Arguments:` section; no `update:` field;
    no line in a Description starting with `word:`; argument names match
-   the interface; each alias link points to an existing file.
+   the interface; `Examples` holds links only; each alias link points to
+   an existing file.
 5. Reread every docblock you wrote as a new user would. Vale checks
    only mechanics. Rewrite any sentence that needs a second reading.
 6. Confirm only comments changed. This prints nothing when the check

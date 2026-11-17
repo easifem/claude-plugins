@@ -227,8 +227,8 @@ older `AGENTS.md` says to ask before every build, the rule above
 
 ## Documentation
 
-Every public interface has a FORD docblock with an `Examples` program
-(`references/docblock-style.md`). Write the text in short, plain
+Every public interface has a FORD docblock whose `Examples` section
+links to its tests, never copies them (`references/docblock-style.md`). Write the text in short, plain
 sentences, one idea each ("Writing the text" there). **Whenever a
 method changes, update its docs in the same change** (see "Keeping docs in sync with code" there).
 Do not list doc updates in reports; do report docs or tests left for

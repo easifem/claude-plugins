@@ -12,7 +12,7 @@ Author: Vikas Sharma, Ph. D. — <https://www.easifem.com> — License: GPL-3.0
 |---|---|---|
 | `easifem-conventions` | Skill (automatic) | Working style, approval rules, build commands, major/minor rules, code style, naming, HDF5 layout, linting. References: naming, running examples (`runner.toml`), templates and debug rules, a complete test example, FORD docblocks (incl. keeping docs in sync and `formal` doc generation). |
 | `/new-method` | Skill | Scaffolds interface + docblock, submodule `MODULE PROCEDURE`, test and `runner.toml`. |
-| `/write-docblock` | Skill | FORD docblock whose `Examples` program comes from the matching test. |
+| `/write-docblock` | Skill | FORD docblock whose `Examples` section links to the matching tests. |
 | `/write-test` | Skill | `<MethodName>_test_<N>.F90` with `CALL OK` checks; runs it. |
 | `/review` | Skill | Read-only review of changes against the conventions, with a major/minor verdict. |
 | `/refactor` | Skill | Inventory → mapping table → approval → mechanical rename/restructure → verify. |
@@ -50,6 +50,36 @@ Author: Vikas Sharma, Ph. D. — <https://www.easifem.com> — License: GPL-3.0
 - Requires the `easifem` CLI on PATH, plus `python3` for hooks.
 - Requires `zfls` on PATH for Fortran code intelligence.
 - Each repository's own `AGENTS.md` still applies.
+
+### Vale (prose lint)
+
+`scripts/lint-prose.sh` needs [Vale](https://vale.sh) 3.x on PATH.
+Without it the script exits 3 and the skills skip the prose check.
+
+1. Install Vale:
+
+   ```bash
+   # Arch / CachyOS
+   sudo pacman -S vale
+   # macOS
+   brew install vale
+   # Other Linux: download a release binary, put it on PATH
+   # https://github.com/errata-ai/vale/releases
+   ```
+
+2. Check it: `vale --version`.
+
+3. Run the script once with network access. The first run downloads
+   the `write-good` and `Readability` styles into
+   `${XDG_CACHE_HOME:-~/.cache}/easifem-dev/vale`:
+
+   ```bash
+   scripts/lint-prose.sh README.md
+   ```
+
+   Later runs work offline. If the sync fails, the script exits 3; fix
+   the network and run it again. To refresh the styles, delete that
+   cache directory.
 
 ## Usage
 

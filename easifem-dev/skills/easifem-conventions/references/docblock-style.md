@@ -174,40 +174,36 @@ After the GPL header of a library file (none in test programs):
 
 ## Examples section
 
+The tests are the examples. The docblock links to them and never
+copies their code: an inline program doubles the size of the module
+file and of the context needed to read it.
+
 - Exactly one section per docblock, written `! Examples` on its own line
-  (never `Example`, no extra short `Example:` snippet).
-- A complete runnable program: `PROGRAM main` … `END PROGRAM main` with all
-  `USE ..., ONLY:` lines (one item per line), `IMPLICIT NONE`,
-  declarations, calls, and `CALL OK(...)` checks from `Test_Method`.
-- Fenced with `` !```fortran `` and `` !``` `` on their own lines; every
-  line inside starts with `!` (plain `!` + one space), never `!>`.
-- Normally identical to the matching test in
-  `src/modules/<Module>/examples/`, minus its `!> author:` docblock (and
-  minus any GPL header). Helpers go after `CONTAINS` inside the program.
-- **Exception — long tests.** When the test program is longer than 100
-  lines, write a short "dummy example" instead: the minimal code that
-  shows the call, not meant to run by copy and paste. The link to the
-  full test (below) is then mandatory.
-- **Links to the test files.** After the closing `` !``` ``, link each
-  matching test file with a FORD alias. The alias is the repository name
-  (`|base|`, `|classes|`, `|elasticity|`, `|seepage|`, `|diffusion|`) and
-  points to that repository's `src/modules/`, so the path starts at the
-  module folder:
-  `! [test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`.
-  Link text is `test <N>`, the number of the test file. List every
-  `<MethodName>_test_<N>.F90` the example is based on, one per line;
-  use the alias of the repository the file lives in. Always inline
-  links; no reference-style links (`[test 1][label]`), because `formal`
-  puts a whole module on one page and labels clash. A link line may
-  exceed 78 characters when the path is long; it is the only exception
-  to the line limit. Links go alongside the inline program, never
-  instead of it. Do not write plain `Full example: <path>` lines.
-- Kind-overloaded routines: example uses `REAL(DFP)` / `INTEGER(I4B)` only.
-- Generic interfaces (`Initiate`, `Set`, `Insert`, ...): one example per
-  distinct use case, not per specific procedure; thin wrappers point to
-  the main one via `See also:`.
-- Use only the current API. Do not copy old examples that use removed APIs
-  (e.g. `ParameterList_`-based initiation) without updating them.
+  (never `Example`).
+- **Links only.** No inline program, no fenced code, no short snippet.
+- One list item per matching test file `<MethodName>_test_<N>.F90`:
+  `! - [test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`.
+  Link text is `test <N>`, the number of the test file. A short phrase
+  saying what the test shows may follow:
+  `! - [test 2](|classes|FEDOF/examples/Initiate_test_2.F90) with order 3`.
+- The alias is the repository name (`|base|`, `|classes|`,
+  `|elasticity|`, `|seepage|`, `|diffusion|`) and points to that
+  repository's `src/modules/`, so the path starts at the module folder.
+  Use the alias of the repository the file lives in.
+- Always inline links; no reference-style links (`[test 1][label]`),
+  because `formal` puts a whole module on one page and labels clash.
+  Do not write plain `Full example: <path>` lines.
+- A link line may exceed 78 characters when the path is long; it is the
+  only exception to the line limit.
+- Every link must point to an existing file. No matching test: leave
+  `Examples` out and say so (offer `/write-test`). Never put an inline
+  program in its place.
+- Generic interfaces (`Initiate`, `Set`, `Insert`, ...): link the tests
+  of each use case on the main specific procedure; thin wrappers point
+  to it via `See also:`.
+- Older docblocks may still hold an inline program. When you rewrite
+  such a docblock, replace the program with links. Do not touch other
+  docblocks only for this unless asked.
 
 ## Keeping docs in sync with code
 
@@ -223,7 +219,8 @@ errors, return values). Update everything affected:
 - the one-line `!!` comment of the binding in `TYPE ... CONTAINS`;
 - the `TYPE` docblock and component `!!` comments when defaults or the
   meaning of components change;
-- the `Examples` program and the matching test (keep both the same);
+- the `Examples` links (add new tests, drop removed ones) and the
+  matching tests;
 - examples, docs and tests of other methods that call or refer to the
   changed method (renamed binding, new required argument);
 - section banners (`!---` blocks) when a procedure is renamed.
@@ -260,22 +257,8 @@ questions (including docs or tests not updated).
 !
 ! Examples
 !
-!```fortran
-! PROGRAM main
-! USE GlobalData, ONLY: DFP
-! USE SomeModule, ONLY: SomeFunction
-! USE Test_Method, ONLY: OK
-! IMPLICIT NONE
-!
-! REAL(DFP) :: x(3)
-!
-! x = [1.0_DFP, 2.0_DFP, 3.0_DFP]
-! CALL OK(SomeFunction(x) .GT. 0.0_DFP, "SomeFunction is positive")
-!
-! END PROGRAM main
-!```
-!
-! [test 1](|base|SomeModule/examples/SomeFunction_test_1.F90)
+! - [test 1](|base|SomeModule/examples/SomeFunction_test_1.F90)
+! - [test 2](|base|SomeModule/examples/SomeFunction_test_2.F90) with weights
 !
 ! See also: [[RelatedRoutine]]
 

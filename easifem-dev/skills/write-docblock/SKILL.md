@@ -20,18 +20,15 @@ Load `easifem-conventions` and follow
 1. **Find the target.** Locate the `INTERFACE` (or `TYPE`) in
    `src/modules/...` and read its implementation in `src/submodules/...`
    so the Description and Formula describe what the code actually does.
-2. **Find the example.** Look in `src/modules/<Module>/examples/` for a
-   matching `<MethodName>_test_<N>.F90`.
-   - If one exists, use its program (without its `!> author:` docblock)
-     as the `Examples` program. If it is longer than 100 lines, write a
-     short dummy example instead.
-   - Below the program, link every matching test file with the repo
-     alias, e.g.
-     `! [test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`
-     (see "Links to the test files" in `docblock-style.md`).
-   - If none exists, say so and offer to run `/write-test` first. Do not
-     invent an untested example silently; if the user wants to proceed
-     anyway, mark that the example still needs a matching test.
+2. **Find the tests.** List them with
+   `ls src/modules/<Module>/examples/<MethodName>_test_*`. Do not read
+   them unless the Description needs a fact from one.
+   - `Examples` is a list of links, one per test, with the repo alias,
+     e.g. `! - [test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`
+     (see "Examples section" in `docblock-style.md`). Never copy the
+     test program into the docblock.
+   - If none exists, say so and offer to run `/write-test` first. If the
+     user wants to proceed anyway, leave `Examples` out.
 3. **Draft.** Write the docblock: `!> author:` first line, `date:`,
    `summary:`, Description, `Changes:` (when revising an existing block,
    add a dated entry; never `update:`), `Returns:` (functions),
@@ -42,8 +39,8 @@ Load `easifem-conventions` and follow
    arguments instead. For classes, keep only one-line `!!` comments on
    bindings inside the `TYPE`.
 4. **Check.** Every line ≤ 78 characters (test link lines excepted);
-   `!>` only on the first line; example lines start with `! `; `USE`
-   lines one item each; each test link uses the right repo alias and
+   `!>` only on the first line; `Examples` holds links only, no
+   program; each test link uses the right repo alias and
    points to an existing file; argument
    names match the interface exactly; no line in the Description starts
    with `word:`. Reread the text against "Writing the text" in
