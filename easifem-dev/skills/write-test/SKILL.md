@@ -1,10 +1,8 @@
 ---
 name: write-test
 description: >
-  This skill should be used when the user runs "/write-test" or asks to
-  "write a test for a method", "add an example program", "test this
-  routine", or "create a MethodName_test_N.F90 file" in an EASIFEM library (base,
-  classes, elasticity, seepage, diffusion).
+  Use for "/write-test" or writing a MethodName_test_N.F90 test or
+  example program in an EASIFEM library.
 ---
 
 # /write-test

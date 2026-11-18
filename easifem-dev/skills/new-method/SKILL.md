@@ -1,11 +1,8 @@
 ---
 name: new-method
 description: >
-  This skill should be used when the user runs "/new-method" or asks to
-  "add a new method", "add a routine to a module", "create a new
-  procedure", or "add a type-bound procedure to a class" in an EASIFEM
-  library (base, classes, elasticity, seepage, diffusion). It scaffolds the
-  interface, the submodule implementation and a test program.
+  Use for "/new-method" or adding a routine or type-bound procedure to
+  an EASIFEM library. Scaffolds the interface, submodule body and a test.
 ---
 
 # /new-method

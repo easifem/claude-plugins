@@ -1,11 +1,8 @@
 ---
 name: fix-bug
 description: >
-  This skill should be used when the user runs "/fix-bug ID" or says
-  "move to H-03", "let's start with M-01", "fix the next bug", "explain
-  this bug", or "mark it fixed" while working through a bug report in
-  bugs-report/ of an EASIFEM library (base, classes, elasticity, seepage,
-  diffusion).
+  Use for "/fix-bug ID", "move to H-03", "fix the next bug" or "mark it
+  fixed" while working through a bugs-report/ in an EASIFEM library.
 ---
 
 # /fix-bug

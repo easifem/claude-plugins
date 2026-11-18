@@ -1,13 +1,11 @@
 ---
 name: cookbook-writer
 description: >
-  Use this agent to draft a new entry, or fix an existing one, in the
-  EASIFEM cookbook (`../cookbook`): recipes and theory notes for base,
-  classes and the elasticity, seepage and diffusion kernels. Examples:
-  "write a cookbook recipe for FEDOF L2 DOFs", "add a theory note on
-  hierarchical bases", "the FEDOF recipe is wrong about tsize, fix it".
-  It reads the library repos but never edits them.
+  Drafts or fixes an entry (recipe or theory note) in the EASIFEM
+  cookbook (`../cookbook`), e.g. "write a cookbook recipe for FEDOF L2
+  DOFs". Reads the library repos, never edits them.
 tools: Read, Grep, Glob, Bash, Write, Edit, LSP
+model: sonnet
 ---
 
 # Cookbook writer

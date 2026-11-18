@@ -1,11 +1,9 @@
 ---
 name: review
 description: >
-  This skill should be used when the user runs "/review" or asks to
-  "review my changes", "check this against the conventions", "is this
-  ready to commit", or "review a file" in an EASIFEM library (base,
-  classes, elasticity, seepage, diffusion). It reports problems and never
-  edits files.
+  Use for "/review", "review my changes" or "is this ready to commit" in
+  an EASIFEM library. Reports problems against the conventions; never
+  edits.
 ---
 
 # /review

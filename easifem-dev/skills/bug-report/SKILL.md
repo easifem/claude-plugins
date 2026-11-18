@@ -1,10 +1,8 @@
 ---
 name: bug-report
 description: >
-  This skill should be used when the user runs "/bug-report" or asks to
-  "generate a bug report", "write up the bugs you found", "report unused
-  code", "save the report in bugs-report", or "update the bug report" for
-  an EASIFEM library (base, classes, elasticity, seepage, diffusion).
+  Use for "/bug-report" or requests to write up found bugs or unused
+  code as a report in bugs-report/ of an EASIFEM library.
 ---
 
 # /bug-report
