@@ -1,8 +1,8 @@
 ---
 name: bug-report
 description: >
-  Use for "/bug-report" or requests to write up found bugs or unused
-  code as a report in bugs-report/ of an EASIFEM library.
+  Use for "/bug-report" or requests to file found bugs or unused code
+  as GitHub issues in an EASIFEM library repository.
 ---
 
 # /bug-report
@@ -10,38 +10,77 @@ description: >
 Arguments: the module or class, and the source of findings (this
 conversation, a code read, a review). Ask if unclear.
 
-## Location and format
+Files one GitHub issue per finding with `gh`, in the repository of the
+current library (`gh repo view --json nameWithOwner`). The fields match
+the org issue form `easifem/.github/ISSUE_TEMPLATE/bug_report.yml`, so
+issues from people and from Claude look the same.
 
-- Directory: `bugs-report/` at the repository root (git-ignored; if the
-  directory or the ignore entry is missing, propose adding them).
-- File: `bugs-report/<Module>_bug_report.md` (or
-  `<Module>-<topic>.md`, e.g. `UStfemLinearElasticity_Class-unused-code.md`).
-- Keep only open entries; resolved entries are removed when fixed.
+## Title
 
-Entry IDs by severity: `H-01`, `H-02`, … (High: wrong results, crashes,
-memory errors), `M-01`, … (Medium: wrong edge cases, misleading
-interfaces, inconsistent behaviour), `L-01`, … (Low: missing overloads,
-style, lint, docs). Never reuse an ID in the same report.
+```text
+[<UserType>] <Module>: <Severity>: <short title>
+```
 
-Each entry:
+- `<UserType>`: the type name without the trailing `_` (`Mesh_` →
+  `Mesh`). Drop `[<UserType>] ` when the module has no type (many base
+  modules): `SortUtility: Low: <short title>`.
+- `<Module>`: the module name (`Mesh_Class`, `SortUtility`).
+- `<Severity>`:
+    - `High`: wrong results, crashes, memory errors.
+    - `Medium`: wrong edge cases, misleading interfaces, inconsistent
+      behaviour.
+    - `Low`: missing overloads, style, lint, docs, unused code.
+- Short title: what is wrong, in a few words, no final period.
+
+Example: `[Mesh] Mesh_Class: High: GetNodeCoord returns wrong size for mixed meshes`
+
+## Label
+
+One label only: the UserType (`Mesh`), or the module name when there is
+no type (`SortUtility`). No `bug` label. Labels belong to each
+repository: check with `gh label list --search <Label>` and create a
+missing one with `gh label create <Label>`.
+
+## Body
 
 ```markdown
-### H-01 — <short title>
+### Location
 
-- **Where:** `File.F90:ProcedureName` (`File.F90:<line>` only for code
-  outside any procedure; see "Reporting code locations" in
-  `easifem-conventions`)
-- **Problem:** what is wrong and when it happens.
-- **Evidence:** minimal input / failing test idea / reasoning.
-- **Suggested fix:** options (a), (b) … with a recommendation.
+`File.F90:ProcedureName` (`File.F90:<line>` only for code outside any
+procedure; see "Reporting code locations" in `easifem-conventions`)
+
+### Problem
+
+What is wrong and when it happens.
+
+### Minimal reproducer
+
+Fortran code, a failing test idea, or the reasoning.
+
+### Expected vs actual
+
+What should happen and what happens.
+
+### Suggested fix
+
+Options (a), (b) … with a recommendation. Write "None" if there is none.
+
+### Environment
+
+Compiler and version, OS, commit (`git rev-parse --short HEAD`).
 ```
 
 ## Steps
 
 1. Collect findings. If the user said to use the conversation only, do
    not re-read the code.
-2. Write or update the report (new IDs continue after the highest
-   existing one).
-3. Show a summary table (ID, title, location as `File.F90:ProcedureName`)
-   to the user.
-4. Do not fix anything here; fixing is `/fix-bug <ID>`.
+2. Check for duplicates: `gh issue list --state open --search "<Module>"`.
+   Mention any open issue that already covers a finding and skip it.
+3. Show the proposed issues as a table (title, label, location) and
+   wait for approval. Creating issues is outward-facing; never skip
+   this step.
+4. Create the missing labels, then each issue with
+   `gh issue create --title ... --label ... --body-file <file>` (body
+   file in the scratchpad).
+5. Report the issue numbers and links.
+6. Do not fix anything here; fixing is `/fix-bug #<number>`.

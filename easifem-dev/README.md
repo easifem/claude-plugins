@@ -16,8 +16,8 @@ Author: Vikas Sharma, Ph. D. — <https://www.easifem.com> — License: GPL-3.0
 | `/write-test` | Skill | `<MethodName>_test_<N>.F90` with `CALL OK` checks; runs it. |
 | `/review` | Skill | Read-only review of changes against the conventions, with a major/minor verdict. |
 | `/refactor` | Skill | Inventory → mapping table → approval → mechanical rename/restructure → verify. |
-| `/bug-report` | Skill | Writes `bugs-report/<Module>_bug_report.md` with H/M/L entries. |
-| `/fix-bug` | Skill | One bug at a time: explain with options → failing test → fix → docs → report update. |
+| `/bug-report` | Skill | Files one GitHub issue per finding, titled `[Type] Module: Severity: title` and labelled with the type, after your approval. |
+| `/fix-bug` | Skill | One issue at a time: explain with options → failing test → fix → docs → commit with `Fixes #N`. |
 | `cookbook-writer` | Agent | Drafts or fixes entries in `../cookbook` following its `CLAUDE.md`, modelled on `recipes/fedof-h1-hierarchical.md`. Reads the library repos, never edits them. |
 | `doc-writer` | Agent | Writes or rewrites FORD docblocks and `!!` comments for whole files or modules, following `docblock-style.md`, then lints with `lint-prose.sh`. Edits comments only, never code. |
 | `reviewer` | Agent | Independent read-only review of changes in a fresh context, using the `/review` checklist plus `lint-prose.sh` and `fortitude --no-fix`. |
@@ -88,7 +88,7 @@ Without it the script exits 3 and the skills skip the prose check.
 - `/write-test ARTH`
 - `/review`
 - `/refactor HDF5File_Class: numbered overload names`
-- `/bug-report SortUtility` then `/fix-bug H-01`
+- `/bug-report SortUtility` then `/fix-bug #12`
 - "Write a cookbook recipe for FEDOF L2 DOFs" (runs `cookbook-writer`)
 
 ## Cookbook writer
