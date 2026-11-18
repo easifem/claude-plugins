@@ -1,15 +1,11 @@
 ---
 name: easifem-conventions
 description: >
-  This skill should be used whenever working on the EASIFEM Fortran
-  libraries: easifemBase ("base"), easifemClasses ("classes"), or kernels
-  developed using easifemBase and easifemClasses, for example,
-  elasticity, seepage and diffusion kernels. Triggers include editing or
-  creating .F90 files in these repositories, "add a method", "change this
-  interface", "add a field to the class", "rename", "refactor", "build
-  base", "compile classes", "install", "run the example", "clean the
-  build", "commit", or any question about EASIFEM code style, naming, FORD
-  docblocks, or build order.
+  Use whenever working on EASIFEM Fortran code (base, classes, or the
+  elasticity, seepage and diffusion kernels): editing .F90 files, adding
+  or renaming methods, building, installing, running examples,
+  committing, or questions on code style, naming, FORD docblocks or
+  build order.
 ---
 
 # EASIFEM development conventions

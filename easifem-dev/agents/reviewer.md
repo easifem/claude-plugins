@@ -1,13 +1,9 @@
 ---
 name: reviewer
 description: >
-  Use this agent for an independent, read-only review of changes in an
-  EASIFEM library (base, classes, elasticity, seepage, diffusion)
-  against the conventions: correctness, structure, style, docblocks,
-  tests. It starts fresh, without the context that wrote the change.
-  Examples: "have the reviewer check my changes", "independent review
-  of the VectorField refactor", "review jj diff -r @- with the reviewer
-  agent". It never edits files.
+  Independent, read-only review of changes in an EASIFEM library against
+  the conventions, starting without the writer's context, e.g. "have the
+  reviewer check jj diff -r @-". Never edits files.
 tools: Read, Grep, Glob, Bash, LSP
 ---
 

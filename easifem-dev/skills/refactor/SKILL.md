@@ -1,13 +1,9 @@
 ---
 name: refactor
 description: >
-  This skill should be used when the user runs "/refactor" or asks to
-  "rename methods", "rename routines to the new convention", "change
-  hdf5_ to obj_", "make method names uppercase", "renumber overloads",
-  "move methods to another submodule", "split this submodule", "remove
-  unused code", or otherwise restructure existing code in an EASIFEM
-  library (base, classes, elasticity, seepage, diffusion) without
-  changing behaviour.
+  Use for "/refactor" or behaviour-preserving restructuring in an EASIFEM
+  library: renaming methods (e.g. hdf5_ to obj_), renumbering overloads,
+  moving or splitting submodules, removing unused code.
 ---
 
 # /refactor

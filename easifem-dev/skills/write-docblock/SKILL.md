@@ -1,10 +1,8 @@
 ---
 name: write-docblock
 description: >
-  This skill should be used when the user runs "/write-docblock" or asks to
-  "document this routine", "write the FORD docblock", "add documentation to
-  a method", "fix the docblock", or "add an Examples section" for code in
-  an EASIFEM library (base, classes, elasticity, seepage, diffusion).
+  Use for "/write-docblock" or documenting a routine (FORD docblock,
+  Examples section) in an EASIFEM library.
 ---
 
 # /write-docblock

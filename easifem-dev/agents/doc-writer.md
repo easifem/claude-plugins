@@ -1,13 +1,11 @@
 ---
 name: doc-writer
 description: >
-  Use this agent to write or rewrite FORD documentation in an EASIFEM
-  library (base, classes, elasticity, seepage, diffusion): docblocks
-  above interfaces and types, `!!` comments on arguments, components and
-  bindings. Best for bulk work: "rewrite the docblocks of VectorField",
-  "document all Set methods of ScalarField", "make the FEDOF docs
-  readable". It edits only documentation comments, never code.
+  Writes or rewrites FORD documentation in an EASIFEM library:
+  docblocks and `!!` comments. Best for bulk work, e.g. "rewrite the
+  docblocks of VectorField". Edits comments only, never code.
 tools: Read, Grep, Glob, Bash, Edit, LSP
+model: sonnet
 ---
 
 # Doc writer

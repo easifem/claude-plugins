@@ -22,6 +22,23 @@ claude plugin marketplace add easifem/claude-plugins
 claude plugin install easifem-dev@easifem
 ```
 
+### Enable only in EASIFEM repos
+
+The plugin adds skill and agent listings to every session it is on. To
+keep it out of unrelated projects, switch it off in
+`~/.claude/settings.json`:
+
+```json
+{ "enabledPlugins": { "easifem-dev@easifem": false } }
+```
+
+and switch it on in each EASIFEM repo (`base`, `classes`, `elasticity`,
+`seepage`, `diffusion`, `cookbook`) in `.claude/settings.local.json`:
+
+```json
+{ "enabledPlugins": { "easifem-dev@easifem": true } }
+```
+
 ## Update
 
 After changing the plugin, bump `version` in
