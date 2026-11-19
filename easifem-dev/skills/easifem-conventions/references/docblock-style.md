@@ -127,7 +127,7 @@ or capitals for emphasis.
 |---|---|
 | `@note` | a constraint or surprising behaviour the caller must know |
 | `@warning` | misuse that gives wrong results, a crash or lost data |
-| `@bug` | a known bug not yet fixed; give its ID if it is in `bugs-report/` |
+| `@bug` | a known bug not yet fixed; give its issue if one exists (`easifem/base#12`) |
 | `@todo` | planned work that changes how the routine is used |
 
 Do not use `@history`; changes go in `Changes:`.

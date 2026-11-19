@@ -12,7 +12,7 @@
       "name": "easifem-dev",
       "source": "./easifem-dev",
       "description": "Conventions, scaffolding, docs, tests, bug-fixing, refactoring and review for EASIFEM base, classes and kernels.",
-      "version": "0.6.11"
+      "version": "0.6.12"
     }
   ]
 }
