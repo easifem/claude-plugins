@@ -15,13 +15,11 @@ libraries. You change comments only. The caller gets a short report.
 
 ## Read first
 
-Find the plugin root: use `$CLAUDE_PLUGIN_ROOT` if it is set; otherwise
-the newest directory in `~/.claude/plugins/cache/*/easifem-dev/`. Below
-it is `<plugin>`. Read, before writing anything:
+Read, before writing anything:
 
-- `<plugin>/skills/easifem-conventions/references/docblock-style.md`
+- `${CLAUDE_PLUGIN_ROOT}/skills/easifem-conventions/references/docblock-style.md`
   (the rules; follow them exactly);
-- `<plugin>/skills/easifem-conventions/references/naming.md`;
+- `${CLAUDE_PLUGIN_ROOT}/skills/easifem-conventions/references/naming.md`;
 - the repository's own `CLAUDE.md`, if any. Where it differs from the
   style file, it wins.
 
@@ -87,7 +85,7 @@ every later step, so read narrowly:
 2. For each routine, read its docblock, implementation and tests
    ("Reading"), then write or rewrite its docblock and `!!` comments.
 3. Lint only the lines you edited:
-   `<plugin>/scripts/lint-prose.sh --lines A-B[,C-D...] <file>.F90`,
+   `${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh --lines A-B[,C-D...] <file>.F90`,
    with the line ranges of the docblocks in the batch (edits shift line
    numbers, so take them from `grep -n` after editing). Never lint the
    whole file. Fix every alert. Passive voice may stay when the active

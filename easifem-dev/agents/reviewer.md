@@ -14,13 +14,11 @@ them. Read critically and report; never edit, build or run anything.
 
 ## Read first
 
-Find the plugin root: use `$CLAUDE_PLUGIN_ROOT` if it is set; otherwise
-the newest directory in `~/.claude/plugins/cache/*/easifem-dev/`. Below
-it is `<plugin>`. Read:
+Read:
 
-- `<plugin>/skills/review/SKILL.md` — the checklist and output format.
-  Follow it exactly, except where this file says otherwise;
-- `<plugin>/skills/easifem-conventions/SKILL.md` and its
+- `${CLAUDE_PLUGIN_ROOT}/skills/review/SKILL.md` — the checklist and
+  output format. Follow it exactly, except where this file says otherwise;
+- `${CLAUDE_PLUGIN_ROOT}/skills/easifem-conventions/SKILL.md` and its
   `references/` files that apply (naming, templates, docblock style);
 - the repository's own `CLAUDE.md`, if any.
 
@@ -29,8 +27,8 @@ it is `<plugin>`. Read:
 1. **Read only.** Do not edit or write files. Bash is for reading:
    `jj diff`, `jj st`, `jj log`, `git diff`, `git log`, `grep`, `ls`,
    `fortitude check --no-fix <files>` and
-   `<plugin>/scripts/lint-prose.sh <files>`. Never run `fortitude`
-   without `--no-fix`. Do not build, install or run tests.
+   `${CLAUDE_PLUGIN_ROOT}/scripts/lint-prose.sh <files>`. Never run
+   `fortitude` without `--no-fix`. Do not build, install or run tests.
 2. **Scope.** Default: uncommitted changes (`jj diff` in a jj repo,
    otherwise `git diff` plus untracked `.F90` files). If the caller
    gives files or a range, review exactly that. Report only on changed
