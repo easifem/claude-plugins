@@ -19,6 +19,9 @@ Applies to the docblock above each `INTERFACE` (and each `TYPE`).
 3. Fields: `date:` and `summary:` (both mandatory). Long summaries
    continue on an indented `!` line. **No `update:` field**; FORD does
    not recognise it. Record changes in a `Changes:` list (item 4).
+   Dates in `date:` and `Changes:` are `YYYY-MM-DD`. When you rewrite
+   a docblock, convert any other date format (`14 Feb 2021`,
+   `2021/02/14`) to `YYYY-MM-DD`; keep the date itself.
 4. Sections, in order (omit only if not applicable):
    - Description — plain paragraphs: what it does, algorithm steps,
      rules it follows. Always comes first, before `Changes:`.
