@@ -187,8 +187,13 @@ file and of the context needed to read it.
 - One list item per matching test file `<MethodName>_test_<N>.F90`:
   `! - [test 1](|classes|FEDOF/examples/Initiate_test_1.F90)`.
   Link text is `test <N>`, the number of the test file. A short phrase
-  saying what the test shows may follow:
-  `! - [test 2](|classes|FEDOF/examples/Initiate_test_2.F90) with order 3`.
+  saying what the test shows may follow on the next line, indented to
+  the link text:
+
+  ```fortran
+  ! - [test 2](|classes|FEDOF/examples/Initiate_test_2.F90)
+  !   with order 3
+  ```
 - The alias is the repository name (`|base|`, `|classes|`,
   `|elasticity|`, `|seepage|`, `|diffusion|`) and points to that
   repository's `src/modules/`, so the path starts at the module folder.
@@ -261,7 +266,8 @@ questions (including docs or tests not updated).
 ! Examples
 !
 ! - [test 1](|base|SomeModule/examples/SomeFunction_test_1.F90)
-! - [test 2](|base|SomeModule/examples/SomeFunction_test_2.F90) with weights
+! - [test 2](|base|SomeModule/examples/SomeFunction_test_2.F90)
+!   with weights
 !
 ! See also: [[RelatedRoutine]]
 
